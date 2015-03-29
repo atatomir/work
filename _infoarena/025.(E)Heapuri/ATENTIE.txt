@@ -1,0 +1,5 @@
+Atentie la :
+
+- existenta copiilor la procedura down ( daca nu exista ii duci in -1 , unde heap[-1] = un nr ff mare )
+- cerinta 2 cere al x-lea numar introdus, nu din heap intr-un moment dat
+- cerinta 2 cere al x-lea numar adaugat , necontand stergerile ( utilizeaza contop1 care se incrementeaza odata cu cont , dar nu se decrementeaza niciodata ) , altfel pui in alt loc informatia.
