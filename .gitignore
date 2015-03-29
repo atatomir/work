@@ -1,14 +1,14 @@
-.bak
-.cfg
+*.bak
+*.cfg
 
 
-.err
-.in
-.out
-.exe
+*.err
+*.in
+*.out
+*.exe
 
 bin
 obj
-.cbp
-.depend
-.layout
+*.cbp
+*.depend
+*.layout
