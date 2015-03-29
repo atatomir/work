@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1421405605 source:c:\users\elev\desktop\2sat\main.cpp
+	<iostream>
+	<cstdio>
+	<stack>
+	<vector>
+
+1421409581 source:c:\users\alex_2\desktop\2sat\main.cpp
+	<iostream>
+	<cstdio>
+	<stack>
+	<vector>
+
