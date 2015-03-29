@@ -1,0 +1,14 @@
+.bak
+.cfg
+
+
+.err
+.in
+.out
+.exe
+
+bin
+obj
+.cbp
+.depend
+.layout
