@@ -1,10 +1,10 @@
 #!/bin/bash
 echo "Start script"
-for entry in `ls`; do 
-    if [ -d $entry ] ; then 
-        for src in `ls $entry`; do 
+for entry in `ls _infoarena/`; do 
+    if [ -d _infoarena/$entry ] ; then 
+        for src in `ls _infoarena/$entry`; do 
             echo ----------------------------- $entry ---------------------------
-            g++ $entry/$src -o mytest 
+            g++ _infoarena/$entry/$src -o mytest 
             echo ----------------------------------------------------------------
             echo " "  
         done
