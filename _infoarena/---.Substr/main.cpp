@@ -25,7 +25,7 @@ class SuffixArrays{
 
         SuffixArrays(long n,char s[]){
             long log = 0,i,j;
-            while(1<<(log+1)  <= n) log++;
+            while(1<<(log+1)  <= n) log++; log++;
             pr = vector<vector<long> >(log+1,vector<long>(n+2));
 
             for(i=1;i<=n;i++) pr[0][i] = s[i];
