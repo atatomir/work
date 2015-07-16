@@ -1,0 +1,1 @@
+se mai poate optimiza fct query (calcul din cnt*cnt in doar cnt) aplicand metoda greedy in loc de brute (in combinarea nodurilor)
