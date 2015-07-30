@@ -1,0 +1,12 @@
+				 BORDEROU DE COMPILARE
+
+ID         Nume            Prenume              Scoala                        
+BR_9_007   -               -                    -                             
+
+Sursa:     BR_9_0072.cpp
+Problema:  defrag
+
+Mesaj compilator:
+
+
+

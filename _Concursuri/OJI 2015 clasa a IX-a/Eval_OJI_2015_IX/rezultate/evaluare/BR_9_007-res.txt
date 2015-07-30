@@ -1,0 +1,58 @@
+				BORDEROU DE EVALUARE
+
+ID         Nume            Prenume              Scoala                        
+BR_9_007   -               -                    -                             
+Problema: arc
+Sursa:    BR_9_0071.cpp
+
+Test   Punctaj  Timp     Memorie  Mesaj:
+                (ms)     (KB)
+0      5        0.007    128      Corect !                 
+1      5        0.012    128      Corect !                 
+2      5        0.027    164      Corect !                 
+3      5        0.014    164      Corect !                 
+4      0        0.010    164      Incorect !               
+5      0        0.012    128      Incorect !               
+6      0        0.009    128      Incorect !               
+7      0        0.010    128      Incorect !               
+8      0        0.012    128      Incorect !               
+9      0        0.012    128      Incorect !               
+10     0        0.006    132      Incorect !               
+11     0        0.008    128      Incorect !               
+12     0        0.019    164      Incorect !               
+13     0        0.008    148      Incorect !               
+14     0        0.013    140      Incorect !               
+15     0        0.022    160      Incorect !               
+16     0        0.017    160      Incorect !               
+17     0        0.008    128      Incorect !               
+18     0        0.016    164      Incorect !               
+19     0        0.019    164      Incorect !               
+TOTAL: 20 puncte
+=======================================================
+Problema: defrag
+Sursa:    BR_9_0072.cpp
+
+Test   Punctaj  Timp     Memorie  Mesaj:
+                (ms)     (KB)
+0      5        0.007    136      Corect !                 
+1      5        0.010    132      Corect !                 
+2      5        0.015    216      Corect !                 
+3      5        0.006    136      Corect !                 
+4      0        0.009    136      Incorect !               
+5      0        0.009    132      Incorect !               
+6      0        0.009    132      Incorect !               
+7      0        0.011    132      Incorect !               
+8      0        0.012    132      Incorect !               
+9      0        0.008    132      Incorect !               
+10     0        0.009    132      Incorect !               
+11     0        0.012    136      Incorect !               
+12     0        0.010    132      Incorect !               
+13     0        0.016    144      Incorect !               
+14     0        0.011    180      Incorect !               
+15     0        0.018    216      Incorect !               
+16     0        0.021    240      Incorect !               
+17     0        0.037    276      Incorect !               
+18     0        0.012    172      Incorect !               
+19     0        0.033    360      Incorect !               
+TOTAL: 20 puncte
+=======================================================

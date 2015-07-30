@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<oji>
+  <problema>
+    <nume>arc</nume>
+    <limita_timp>200</limita_timp>
+    <limita_memorie>4</limita_memorie>
+    <limita_stiva>4</limita_stiva>
+    <limita_dimens_sursa>10</limita_dimens_sursa>
+  </problema>
+  <problema>
+    <nume>defrag</nume>
+    <limita_timp>200</limita_timp>
+    <limita_memorie>4</limita_memorie>
+    <limita_stiva>4</limita_stiva>
+    <limita_dimens_sursa>10</limita_dimens_sursa>
+  </problema>
+</oji>

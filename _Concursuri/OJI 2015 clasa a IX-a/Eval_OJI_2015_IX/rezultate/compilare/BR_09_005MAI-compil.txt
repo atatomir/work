@@ -1,0 +1,20 @@
+				 BORDEROU DE COMPILARE
+
+ID         Nume            Prenume              Scoala                        
+BR_09_005MAI-               -                    -                             
+
+Sursa:     BR_09_005main.cpp
+Problema:  defrag
+
+Mesaj compilator:
+BR_09_005main.cpp: In function 'int main()':
+BR_09_005main.cpp:9:6: error: 'i' was not declared in this scope
+BR_09_005main.cpp:9:13: error: 'n' was not declared in this scope
+BR_09_005main.cpp:9:18: error: expected ';' before ')' token
+BR_09_005main.cpp:11:5: error: 'i' was not declared in this scope
+BR_09_005main.cpp:11:12: error: 'n' was not declared in this scope
+BR_09_005main.cpp:14:5: error: 'i' was not declared in this scope
+BR_09_005main.cpp:14:12: error: 'n' was not declared in this scope
+
+
+

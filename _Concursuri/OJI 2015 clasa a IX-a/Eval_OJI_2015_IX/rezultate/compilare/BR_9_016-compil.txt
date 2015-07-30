@@ -1,0 +1,13 @@
+				 BORDEROU DE COMPILARE
+
+ID         Nume            Prenume              Scoala                        
+BR_9_016   
+
+Sursa:     BR_9_0162.cpp
+Problema:  defrag
+
+Mesaj compilator:
+BR_9_0162.cpp:3:1: error: 'imt' does not name a type
+
+
+

@@ -1,0 +1,58 @@
+				BORDEROU DE EVALUARE
+
+ID         Nume            Prenume              Scoala                        
+BR_9_012   -               -                    -                             
+Problema: arc
+Sursa:    BR_9_0121.cpp
+
+Test   Punctaj  Timp     Memorie  Mesaj:
+                (ms)     (KB)
+0      5        0.007    195      Corect !                 
+1      5        0.006    191      Corect !                 
+2      5        0.010    195      Corect !                 
+3      5        0.011    195      Corect !                 
+4      5        0.008    195      Corect !                 
+5      5        0.005    191      Corect !                 
+6      5        0.010    195      Corect !                 
+7      5        0.006    195      Corect !                 
+8      5        0.011    191      Corect !                 
+9      5        0.006    191      Corect !                 
+10     0        0.008    195      Valori suplimentare in arc.out ! 
+11     5        0.007    191      Corect !                 
+12     5        0.009    191      Corect !                 
+13     5        0.020    191      Corect !                 
+14     5        0.017    195      Corect !                 
+15     5        0.008    195      Corect !                 
+16     0        0.035    195      Valori suplimentare in arc.out ! 
+17     5        0.006    195      Corect !                 
+18     5        0.008    195      Corect !                 
+19     0        0.011    195      Valori suplimentare in arc.out ! 
+TOTAL: 85 puncte
+=======================================================
+Problema: defrag
+Sursa:    BR_9_0122.cpp
+
+Test   Punctaj  Timp     Memorie  Mesaj:
+                (ms)     (KB)
+0      5        0.017    315      Corect !                 
+1      5        0.005    315      Corect !                 
+2      5        0.008    315      Corect !                 
+3      5        0.006    315      Corect !                 
+4      5        0.010    315      Corect !                 
+5      5        0.012    315      Corect !                 
+6      0        0.013    315      Incorect !               
+7      0        0.013    311      Incorect !               
+8      5        0.012    311      Corect !                 
+9      0        0.014    311      Incorect !               
+10     5        0.014    311      Corect !                 
+11     0        0.012    311      Incorect !               
+12     0        0.015    311      Incorect !               
+13     0        0.009    315      Incorect !               
+14     0        0.009    315      Incorect !               
+15     0        0.015    311      Incorect !               
+16     0        0.013    311      Incorect !               
+17     0        0.016    315      Incorect !               
+18     0        0.010    311      Incorect !               
+19     0        0.018    315      Incorect !               
+TOTAL: 40 puncte
+=======================================================

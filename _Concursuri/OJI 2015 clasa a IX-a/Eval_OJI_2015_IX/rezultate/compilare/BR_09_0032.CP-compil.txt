@@ -1,0 +1,14 @@
+				 BORDEROU DE COMPILARE
+
+ID         Nume            Prenume              Scoala                        
+BR_09_0032.CP
+
+Sursa:     BR_09_0032.cpp.cpp
+Problema:  defrag
+
+Mesaj compilator:
+BR_09_0032.cpp.cpp: In function 'int main()':
+BR_09_0032.cpp.cpp:5:10: error: expected initializer before 'f'
+
+
+

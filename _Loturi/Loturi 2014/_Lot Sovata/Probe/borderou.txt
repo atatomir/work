@@ -1,0 +1,9 @@
+J12
+Tatomir Alex
+
+sahara.pas: 0 pts
+domino.pas: 0 pts
+drumuri.pas: 0 pts
+robot.pas: 0 pts
+sumall.pas: 0 pts
+sam.pas: 0 pts

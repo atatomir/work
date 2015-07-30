@@ -1,0 +1,20 @@
+0	5	0.006	128	Corect ! 
+1	0	0.013	128	Runtime Error!
+2	0	-	3188	Time limit exceeded!
+3	0	0.007	128	Runtime Error!
+4	0	0.010	128	Incorect ! 
+5	0	0.007	132	Incorect ! 
+6	0	0.007	128	Incorect ! 
+7	0	0.010	128	Incorect ! 
+8	0	0.012	128	Incorect ! 
+9	0	0.011	124	Incorect ! 
+10	0	0.006	128	Incorect ! 
+11	0	0.010	128	Incorect ! 
+12	0	0.009	132	Runtime Error!
+13	0	0.005	128	Runtime Error!
+14	0	0.013	132	Incorect ! 
+15	0	0.016	128	Incorect ! 
+16	0	0.015	128	Incorect ! 
+17	0	0.005	128	Incorect ! 
+18	0	0.010	132	Incorect ! 
+19	0	0.014	128	Incorect ! 

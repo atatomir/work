@@ -1,0 +1,32 @@
+				BORDEROU DE EVALUARE
+
+ID         Nume            Prenume              Scoala                        
+br_09_005mai
+
+Problema: arc
+Sursa:    br_09_005main.cpp
+
+Test   Punctaj  Timp     Memorie  Mesaj:
+                (ms)     (KB)
+0      5        0.006    512      Corect !                 
+1      5        0.007    516      Corect !                 
+2      5        0.021    520      Corect !                 
+3      5        0.013    516      Corect !                 
+4      0        0.041    516      Incorect !               
+5      1        0.011    516      Secventa finala incorecta ! 
+6      0        0.009    516      Incorect !               
+7      0        0.013    516      Incorect !               
+8      0        0.014    516      Incorect !               
+9      0        0.014    516      Incorect !               
+10     0        0.012    520      Incorect !               
+11     0        0.013    516      Incorect !               
+12     0        0.082    516      Incorect !               
+13     0        0.031    516      Incorect !               
+14     0        0.029    516      Incorect !               
+15     0        0.071    520      Incorect !               
+16     0        0.048    516      Incorect !               
+17     0        0.013    516      Incorect !               
+18     0        0.078    520      Incorect !               
+19     0        0.076    516      Incorect !               
+TOTAL: 21 puncte
+=======================================================

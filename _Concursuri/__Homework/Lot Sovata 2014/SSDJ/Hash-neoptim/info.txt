@@ -1,0 +1,5 @@
+Aceasta e solutia mea initiala .
+Prin eliminarea Hash-ului si adaugarea variabilei cntAct am imbunatatit timpul.
+Optimizarea consta in asigurarea neduplicarii solutiilor. (fara Hash).
+
+Ambele soltuii (optimizat/neoptimizat) intra in timp.

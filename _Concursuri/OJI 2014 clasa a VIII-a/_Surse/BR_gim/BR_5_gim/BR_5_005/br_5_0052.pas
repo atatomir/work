@@ -1,0 +1,51 @@
+Program piramide;
+VAR n,x,k:BYTE;
+    f,g:TEXT;
+BEGIN
+  ASSIGN(f,'piramide.in'); RESET(f);
+  ASSIGN(g,'piramide.out'); REWRITE(g);
+  READLN(f,g,x,k,n);
+  WHILE k<>0 DO BEGIN
+                  IF k=1
+                  IF k=2;
+                  IF k=3;
+                  IF k=4;
+                  IF k=5;
+                  IF k=6;
+                  IF k=7;
+                  IF k=8;
+                  IF k=9;
+                  IF k=10;
+                  IF k=11;
+                  IF k=12;
+                  IF k=13;
+                  IF k=14;
+                  IF k=15;
+                  IF k=16;
+                  IF k=17;
+                  IF k=18;
+                  IF k=19;
+                  IF k=20;
+                  IF k=21;
+                  IF k=22;
+                  IF k=23;
+                  IF k=24;
+                  IF k=25;
+                  IF k=26;
+                  IF k=27;
+                  IF k=28;
+                  IF k=29;
+                  IF k=30;
+                  IF k=31;
+                  IF k=32;
+                  IF k=33;
+                  IF k=34;
+                  IF k=35;
+                  IF k=36;
+                  IF k=37;
+                  IF k=38;
+                  IF k=39;
+                  IF k=40;
+                END;
+  CLOSE(f); CLOSE(g);
+END.

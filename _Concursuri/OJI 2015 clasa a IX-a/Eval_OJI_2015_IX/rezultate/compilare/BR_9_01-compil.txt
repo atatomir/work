@@ -1,0 +1,12 @@
+				 BORDEROU DE COMPILARE
+
+ID         Nume            Prenume              Scoala                        
+BR_9_01    
+
+Sursa:     BR_9_016.cpp
+Problema:  arc
+
+Mesaj compilator:
+
+
+

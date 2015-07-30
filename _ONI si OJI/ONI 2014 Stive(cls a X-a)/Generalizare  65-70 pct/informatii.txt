@@ -1,0 +1,2 @@
+acesta solutie generalizeaza problema :
+elimina restrictia max-min <= 50000
