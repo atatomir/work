@@ -1,0 +1,52 @@
+IMPORTANT !!!
+
+Pe sistemul pe care se face evaluarea (Windows 7 sa Vista)
+  - trebuie sa fie instalat in prealabil kit-ul OJI (atat Code::Blocks, cat si Free Pascal)
+  - se dezinstaleaza antivirusul (in cel  mai rau caz se dezactiveaza)
+  - Windows Defender - off
+  - Windows Update - off
+  - Browser - inchis si orice alta aplicatie - inchisa.
+ 
+
+INSTALAREA EVALUATORULUI
+
+  - Se instaleaza evaluatorul lansand setup.exe. 
+	Observatie: Daca nu exista .NET Framework 3.5, atunci setup-ul va incerca sa-l instaleze online de pe site-ul Microsoft (dureaza destul de mult)
+
+  - Se lanseaza evaluatorul (de la shortcut, pe desktop !).
+
+  - Se copiaza sursele concurentilor in folderele: 
+          Eval_OJI_2013_XI_XII\probleme\[nume_problema_1]\surse_concurenti 
+	
+	  Eval_OJI_2013__XI_XII\probleme\[nume_problema_2]\surse_concurenti
+
+   - Optional, se pot importa datele concurentilor dintr-un fisier .xls. [Setari->Concurenti->Importa]
+
+
+COMPILARE
+   Comisia poate alege mai multe variante de compilare
+
+Exemple:
+1. In panoul de compilare, se bifeaza checkbox-ul "Toate problemele", 
+   apoi se apasa butonul "Compileaza"
+2. Se selecteaza o singura problema, se bifeaza checkbox-ul "Toate" si se compileaza doar sursele acelei probleme.
+ 
+
+EVALUARE
+   Comisia poate alege mai multe variante de evaluare.
+
+Exemple:
+1. In panoul de evaluare, se bifeaza checkbox-ul "Toate problemele", apoi se apasa "Evalueaza". 
+   Astfel se evalueaza toate sursele ambelor probleme, pe toate testele. 
+2. Se evalueaza automat toate sursele pentru o singura problema
+3. Se evalueaza automat cate o sursa pe toate testele
+4. Se evalueaza cate o singura sursa test cu test (bifa "Test cu test"). 
+
+ 
+RAPOARTE
+   Atat rapoartele de compilare, cat si cele de evaluare, se acceseaza din meniu.
+   Evaluatorul produce si fisierul Clasament.xls. 
+
+
+
+  

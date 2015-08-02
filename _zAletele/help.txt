@@ -1,0 +1,10 @@
+sageata stanga = 0 , 75
+sageata dreapta = 0 , 77
+sageata sus = 0 , 72
+sageata jos = 0 , 80
+esc=27
+(in zecimal,cu #)
+
+
+uses sysutils;
+timetostr(time) prentru a afla timpul

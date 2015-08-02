@@ -1,0 +1,4 @@
+Bubble Sort                         40
+Select Mode                         40
+Insert Mode                         40
+Quick  Sort                        100
