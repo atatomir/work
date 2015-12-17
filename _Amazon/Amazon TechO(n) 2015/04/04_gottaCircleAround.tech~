@@ -1,0 +1,253 @@
+LDA [10000]
+ADDA 4
+STA [10000]
+JGE [10000]
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// UP
+LDA 1
+STA [0]
+HLT
+HLT
+
+// UP
+LDA 1
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// RIGHT
+LDA 2
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// DOWN
+LDA 3
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+// LEFT
+LDA 4
+STA [0]
+HLT
+HLT
+
+
+

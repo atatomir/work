@@ -1,0 +1,20 @@
+LDA [4]
+SUBA [6]
+
+JGE 6 
+
+LDA 3
+STA [0]
+HLT
+
+LDA 2
+STA [0]
+HLT
+
+
+
+
+
+
+
+

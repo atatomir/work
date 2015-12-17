@@ -1,0 +1,62 @@
+LDA 1
+SUBA [1000]
+JGE  14// to UP
+
+ADDA 7
+JGE  20// to LEFT
+
+ADDA 6
+JGE  26// to DOWN
+
+ADDA 6
+JGE  32// to RIGHT
+
+ADDA 9
+JGE  26// to DOWN
+
+LDA 4
+STA [0]
+HLT
+
+// to UP = 14
+LDA 1  
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+// to LEFT = 20
+LDA 4  
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+// to DOWN = 26
+LDA 3  
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+// to RIGHT = 32
+LDA 2  
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+
+

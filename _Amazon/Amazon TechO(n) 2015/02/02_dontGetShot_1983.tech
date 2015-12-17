@@ -1,0 +1,49 @@
+LDA 2
+SUBA [1000]
+JGE 10 // to hold
+
+ADDA 3
+JGE 14 // to down
+
+ADDA 6
+JGE 20 // to right
+
+LDA 1
+STA [0]
+HLT
+
+// TO HOLD = 10
+// LDA 0  // already 0
+// STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+// TO DOWN = 14
+LDA 3
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+// TO RIGHT = 20
+LDA 2
+STA [0]
+
+LDA [1000]
+ADDA 1
+STA [1000]
+
+HLT
+
+
+// 3 HOLD
+// 3 DOWN
+// 6 RIGHT
+// 1 UP

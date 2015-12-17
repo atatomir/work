@@ -1,0 +1,13 @@
+DATA : 10-17.12.2015
+Scor : 65745.11
+Pozitie : 4
+
+//! cu 2 minute inainte de terminare eram locul 3...
+
+1. Generator solutie predefinita (hartile 1 - 9)
+   a. Genereaza comenzile in ordine
+   b. Genereaza comenzile in ordine inversa (mai bun cand pasii finali se repeta)
+2. BFS manual (doar verificari)
+3. Program ce genereaza codul final cu ajutorul functiilor (harta 11 + diferite incercari/harti pe care genereaza o solutie valida)
+
++ mici optimizari care m-au urcat mult in clasament :)

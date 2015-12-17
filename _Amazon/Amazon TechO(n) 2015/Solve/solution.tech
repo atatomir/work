@@ -1,0 +1,10 @@
+LDA [6]
+SUBA [4]
+SUBA 1
+JGE 7
+LDA 3
+STA [0]
+HLT
+LDA 2
+STA [0]
+HLT
