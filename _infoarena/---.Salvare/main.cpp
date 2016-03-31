@@ -9,82 +9,75 @@ using namespace std;
 
 #define mp make_pair
 #define pb push_back
+#define ll long long
 
 #define maxN 1024
+#define inf 1000000
+#define edge_size 1
 
-int n, i, k, x, y;
+int n, k, i, x, y;
 vector<int> list[maxN];
+
 bool us[maxN];
-int lvl[maxN];
-int dad[maxN];
-vector<int> nodes;
-int last_used[maxN];
-int fill_id;
-vector<int> ans_nodes;
+int max_up[maxN]; //! how much i can go up
+int min_down[maxN]; //! nearest hospital
+vector<int> sol;
+
+int act_dist;
 
 void dfs(int node) {
     us[node] = true;
 
+    max_up[node] = act_dist;
+    min_down[node] = inf;
+
     for (int i = 0; i < list[node].size(); i++) {
+        if (us[list[node][i]]) {
+            //! clean..
+            list[node][i] = list[node][ list[node].size() - 1 ];
+            list[node].pop_back();
+            i--;
+            continue;
+        }
+
         int to = list[node][i];
-
-        if (us[to]) continue;
-
-        lvl[to] = lvl[node] + 1;
-        dad[to] = node;
         dfs(to);
-    }
-}
-
-bool cmp(int a, int b) {
-    return lvl[a] > lvl[b];
-}
-
-void dfs_solve(int node, int dist) {
-    last_used[node] = fill_id;
-    if (dist == 0) return;
-
-    for (auto to : list[node]) {
-        if (last_used[to] != fill_id)
-            dfs_solve(to, dist - 1);
-    }
-}
-
-int get_count(int dist) {
-    int ans = 0;
-    memset(last_used, 0, sizeof(last_used));
-    ans_nodes.clear();
-
-    for (auto act : nodes) {
-        if (last_used[act]) continue;
-
-        int daddy = act;
-        for (int how = dist; how > 0 && daddy != 1; how--)
-            daddy = dad[daddy];
-
-        ans++;
-        fill_id = ans + 1;
-        dfs_solve(daddy, dist);
-        ans_nodes.pb(daddy);
+        max_up[node] = min(max_up[node], max_up[to] - 1);
+        min_down[node] = min(min_down[node], min_down[to] + 1);
     }
 
-    return ans;
+    if (min_down[node] <= max_up[node]) {
+        //! can satisfy with actual hospitals
+        max_up[node] = inf;
+        return;
+    }
+
+    if (max_up[node] < edge_size) {
+        //! must set a new hospital
+        sol.pb(node);
+        max_up[node] = inf;
+        min_down[node] = 0;
+        return;
+    }
+
+    //! simply go up
+
+    return;
 }
 
-void add_unuseful_nodes() {
-    int i;
-
+bool check(int dist) {
     memset(us, 0, sizeof(us));
-    for (auto who : ans_nodes)
-        us[who] = true;
+    memset(max_up, 0, sizeof(max_up));
+    memset(min_down, 0, sizeof(min_down));
+    sol.clear();
+    act_dist = dist;
 
-    int how = k - ans_nodes.size();
-    for (i = 1; how > 0; i++) {
-        if (us[i]) continue;
-        how--;
-        ans_nodes.pb(i);
-    }
+    dfs(1);
+    if (max_up[1] < inf) sol.pb(1);
+
+    return sol.size() <= k;
 }
+
 
 int main()
 {
@@ -98,24 +91,26 @@ int main()
         list[y].pb(x);
     }
 
-    dfs(1);
-    for (i = 1; i <= n; i++)
-        nodes.pb(i);
-    sort(nodes.begin(), nodes.end(), cmp);
-
     int ans = -1;
-    for (int step = 1 << 10; step; step >>= 1) {
-        if (get_count(ans + step) > k)
+    for (int step = 1 << 10; step; step >>= 1)
+        if (!check(ans + step))
             ans += step;
-    }
-
-    get_count(ans + 1);
-    add_unuseful_nodes();
-    sort(ans_nodes.begin(), ans_nodes.end());
 
     printf("%d\n", ans + 1);
-    for (auto who : ans_nodes)
-        printf("%d ", who);
+    check(ans + 1);
+
+    memset(us, 0, sizeof(us));
+    for (int e : sol)
+        us[e] = true, k--;
+
+    for (i = 1; i <= n && k; i++)
+        if (!us[i])
+            sol.pb(i), k--;
+
+    sort(sol.begin(), sol.end());
+    for (int e : sol)
+        printf("%d ", e);
+
 
     return 0;
 }
