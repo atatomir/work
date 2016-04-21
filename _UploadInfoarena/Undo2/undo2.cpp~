@@ -1,0 +1,60 @@
+// Adrian Budau - 100 de puncte - O(M log M)
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <cassert>
+
+using namespace std;
+
+int main() {
+    ifstream cin("undo.in");
+    ofstream cout("undo.out");
+
+    int N; assert(cin >> N);
+    assert(1 <= N && N <= 1000 * 1000);
+    vector< vector<int> > list;
+    int lastClear = 0;
+    vector<int> stack;
+    for (int i = 0; i < N; ++i) {
+        int type, x; assert(cin >> type >> x);
+        assert(1 <= type && type <= 4);
+        assert(1 <= x && x <= 200 * 1000);
+        // do the last clear
+        if (type == 3) {
+            assert(1 <= x && x <= lastClear);
+            lastClear -= x;
+        }
+        if (type <= 3) {
+            while (lastClear > 0) {
+                --lastClear;
+                list[stack.back()].pop_back();
+                stack.pop_back();
+            }
+        }
+
+        if (type == 1) {
+            if (x >= int(list.size()))
+                list.resize(x + 1);
+            list[x].push_back(stack.size());
+            stack.push_back(x);
+            continue;
+        }
+
+        if (type == 2) {
+            assert(1 <= x && x <= int(stack.size()));
+            lastClear = x;
+            continue;
+        }
+
+        if (type == 3) {
+            continue;
+        }
+
+        if (x >= int(list.size()))
+            cout << 0 << "\n";
+        else
+            cout << lower_bound(list[x].begin(), list[x].end(), stack.size() - lastClear) - list[x].begin() << "\n";
+    }
+}
+
