@@ -1,0 +1,48 @@
+Solutie problema entanglement
+
+Lucian Bicsi
+
+
+Solutia 40p:
+
+Pentru a verifica daca problema admite solutie sau nu, prima observatie este ca numarul de valori diferite din matrice nu poate depasi valoarea n + m. Daca aceasta conditie se respecta, putem reduce numarul de valori de la intervalul [1..K] la intervalul [1..n+m].
+
+In continuare, vom considera cate un literal pentru fiecare pereche (pos, col), unde pos va reprezenta o pozitie din sirul A[] sau B[] si col "culoarea" aferenta acestei pozitii. Vom adauga mai apoi urmatoarele implicatii:
+
+C[i][j] = c => adaugam implicatiile not(A[i], c) -> (B[j], c) si not(B[j], c) -> (A[i], c) 		(O(n * m) clauze)
+adaugam implicatiile extra (A[i], c) => not(B[i], c'), pentru orice c' != c						(O((n + m)^3 clauze)
+
+Observatia cheie este ca nu suntem obligati sa verificam daca toate pozitiile au atribuite exact o "culoare", ci doar daca au atribuite MAXIM o "culoare".
+
+Complexitatea algoritmului este O((n + m)^3), dar se poate reduce la O((n + m)^2) (optimizarea nu este necesara rezolvarii problemei, insa ideea este lasata ca exercitiu)
+
+
+Solutia 140p:
+
+Pentru solutia pentru punctajul maxim, trebuie sa facem urmatoarea observatie:
+
+Presupunem ca suntem la pozitia i din sirul A[]. Vom avea unele pozitii din sirul B[] care sunt "determinate" (in sensul ca am fost obligati la un pas anterior sa le fixam).
+
+Daca exista o pozitie in B[] fixata pe o culoare c, iar valoarea C[i][pos] = c', unde c' != c, atunci este usor de vazut ca suntem obligati sa "fixam" culoarea c' pozitiei i in A[].
+
+Daca suntem obligati sa fixam doua culori diferite pentru A[i], atunci ne oprim din recursie (am obtinut o stare inconsistenta).
+
+Acum sa presupunem ca pozitia i din sirul A[] nu este determinata. Am vrea acum sa ii fixam culoarea. Iterand prin culorile posibile, vom avea 3 cazuri:
+	1) Culoarea nu este printre pozitiile din sirul B[] care nu sunt inca determinate
+			=> toate pozitiile din sirul B[] nedeterminate se determina la pasul curent
+	2) Culoarea este printre pozitiile din sirul B[]
+		Daca alegem sa o luam, dintre pozitiile nedeterminate din sirul B[] se determina cele care nu au pe linia curenta din matrice acea culoare
+		Daca alegem sa nu o luam, dintre pozitiile nedeterminate din sirul B[] se determina cele care au pe linia curenta din matrice acea culoare
+
+Observatia cheie este ca, in cazul 2), seturile de pozitii care se determina la o decizie este DISJUNCT. Aceasta observatie determina complexitatea buna a algoritmului:
+
+	Ne putem imagina algoritmul ca unul de tip D&C, in care initial avem toate pozitiile B[pos] nedeterminate.
+
+	La un pas i si la o culoare c, daca exista macar o pozitie B[pos] cu C[i][pos] egala cu c, atunci in decizia de a (nu) alege culoarea c pentru pozitia A[i], setul curent de pozitii nedeterminate se va sparge mereu in doua seturi mai mici. Daca la un pas i setul de coloane nedeterminate este vid, atunci nu se va mai realiza o astfel de spargere.
+
+
+Cu toate acestea, in implementarea algoritmului pentru a evita o complexitate nedorita, trebuie sa existe atentie. De exemplu, in cazul 2) prezentat anterior setul de x pozitii nedeterminate se va sparge mereu in seturi de cardinal a si x-a, cu a > 0. In cazul 1) insa, nu ne permitem sa avansam in recursivitate cu toate culorile, ci sa computam rezultatul cu o singura culoare si sa inmultim cu numarul de culori care genereaza acel caz.
+
+In al doilea rand, la fiecare pas trebuie sa verificam daca setul de pozitii fixate determina in mod unic linia curenta, sau este inconsistent. Acest lucru se va realiza "brut" in O(m).
+
+Toate aceste observatii determina o complexitate de O(n * m^2) a algoritmului.
