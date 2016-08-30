@@ -1,0 +1,202 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ll long long
+#define eps 1e-6
+
+namespace FFT{
+
+    /* -------------------- Complex definition ------------------ */
+
+    struct Complex {
+        double a, b;
+
+        Complex operator*(Complex who);
+        Complex operator/(double x);
+        Complex operator+(Complex who);
+        Complex operator-(Complex who);
+        void print();
+        void print_real();
+    };
+
+    Complex Complex::operator*(Complex who) {
+        return {a * who.a - b * who.b, a * who.b + b * who.a};
+    }
+
+    Complex Complex::operator/(double x) {
+        return {a / x, b / x};
+    }
+
+    Complex Complex::operator+(Complex who) {
+        return {a + who.a, b + who.b};
+    }
+
+    Complex Complex::operator-(Complex who) {
+        return {a - who.a, b - who.b};
+    }
+
+    void Complex::print() {
+        printf("(%.2lf + %.2lf i) ", a, b);
+    }
+
+    void Complex::print_real() {
+        printf("%.2lf ", a);
+    }
+
+    /* -------------------- useful resources ------------------ */
+    const double PI = acos(-1);
+    double sign = 1.00;
+
+    vector<Complex> A, B, C;
+    vector<Complex> res_A, res_B, res_C;
+    vector<Complex> aux;
+
+    /* -------------------- Functions ------------------ */
+
+    void inverse_sort(Complex *a, int l, int r) {
+        int i, pos;
+
+        if (l == r) return;
+        for (i = l; i <= r; i++) aux[i] = a[i];
+
+        pos = l;
+        for (i = l; i <= r; i += 2) a[pos++] = aux[i];
+        for (i = l + 1; i <= r; i += 2) a[pos++] = aux[i];
+
+        inverse_sort(a, l, (l + r) >> 1);
+        inverse_sort(a, (l + r) / 2 + 1, r);
+    }
+
+    void FFT(int n, Complex* a, Complex* ans) {
+        int i, j, k;
+        Complex u, v;
+
+        for (i = 0; i < n; i++) ans[i] = a[i];
+        inverse_sort(ans, 0, n - 1);
+
+        for (int len = 1; 2 * len <= n; len <<= 1) {
+            Complex rat = {cos(sign * PI / len), sin(sign * PI / len)};
+
+            for (i = 0; i < n; i += 2 * len) {
+                Complex w = {1, 0};
+
+                for (j = 0; j < len; j++) {
+                    u = ans[i + j];
+                    v = ans[i + j + len];
+
+                    ans[i + j] = u + w * v;
+                    ans[i + j + len] = u - w * v;
+
+                    w = w * rat;
+                }
+            }
+        }
+    }
+
+    vector<Complex> Multiply(vector<Complex> _A, vector<Complex> _B) {
+        int n, m, dim, big_pow, i;
+
+        A = _A; B = _B;
+
+        n = A.size(); m = B.size();
+        dim = max(A.size(), B.size());
+
+        for (big_pow = 1; big_pow / 2 < dim; big_pow <<= 1) ;
+
+        dim = big_pow;
+        while (A.size() < dim) A.pb({0, 0});
+        while (B.size() < dim) B.pb({0, 0});
+
+        res_A.resize(dim);
+        res_B.resize(dim);
+        res_C.resize(dim); C.resize(dim);
+        aux.resize(dim);
+
+        sign = 1.00;
+        FFT(dim, &A[0], &res_A[0]);
+        FFT(dim, &B[0], &res_B[0]);
+
+        for (i = 0; i < dim; i++) res_C[i] = res_A[i] * res_B[i];
+
+        sign = -1.00;
+        FFT(dim, &res_C[0], &C[0]);
+        C.resize(n + m - 1);
+
+        for (i = 0; i < C.size(); i++)
+            C[i] = C[i] / dim;
+
+        return C;
+    }
+
+};
+
+
+template<typename T>
+vector<T> poly_multiply(vector<T> A, vector<T> B) {
+    static vector< FFT::Complex > AA, BB, CC;
+    static vector< T > C;
+    int i;
+
+    AA.clear(); BB.clear();
+    for (i = 0; i < A.size(); i++) AA.pb({A[i], 0.00});
+    for (i = 0; i < B.size(); i++) BB.pb({B[i], 0.00});
+
+    CC = FFT::Multiply(AA, BB);
+    C.clear();
+
+    for (auto e : CC)
+        C.pb( floor(e.a + eps) );
+
+    return C;
+}
+
+// ----------------------- ^^ FFT ^^ ------------------------ //
+
+#define maxN 30011
+
+int t, ti;
+int n, i, x;
+vector<int> A, B, C;
+
+int main()
+{
+    freopen("bacterii2.in","r",stdin);
+    freopen("bacterii2.out","w",stdout);
+
+    scanf("%d", &t);
+    for (ti = 1; ti <= t; ti++) {
+        A = B = vector<int>(maxN, 0);
+
+        scanf("%d", &n);
+        for (i = 1; i <= n; i++) {
+            scanf("%d", &x);
+            A[x]++;
+        }
+
+        scanf("%d", &n);
+        for (i = 1; i <= n; i++) {
+            scanf("%d", &x);
+            B[x]++;
+        }
+
+        while (A.back() == 0) A.pop_back();
+        while (B.back() == 0) B.pop_back();
+        C = poly_multiply(A, B);
+
+        for (i = 0; i < C.size(); i++)
+            if (C[i] != 0)
+                printf("%d %d\n", i, C[i]);
+        printf("\n");
+    }
+
+
+    return 0;
+}
