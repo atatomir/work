@@ -1,0 +1,282 @@
+In this article I am going to present the *Fast Fourier Transform* and other two similar linear transformations that can be used to solve two past tasks from <Link href="https://csacademy.com/" value="csacademy" /> rounds :
+- <Link href="https://csacademy.com/contest/archive/#task/random_nim_generator/" value="Random Nim Generator"> - Round #11
+- <Link href="https://csacademy.com/contest/archive/#task/and-closure/" value="And Closure"> - Round #13
+#3 Polynomials
+First of all, let's define what is a polynomial. A polynomial is a representation of a function :
+<Latex value="f(x) = a_0x^0 + a_1x^1 + a_2x^2 + ... + a_{n-1}x^{n-1}">
+A polynomial can be represented in two ways:
+- Coefficient representation
+- Point-Value representation
+#4 Coefficient representation
+Polynomial <Latex value="P = a_0x^0 + a_1x^1 + a_2x^2 + ... + a_{n-1}x^{n-1}"> of degree n  can be represented as a vector <Latex value="C = \{a_0, a_1, a_2, ..., a_{n-1} \}">
+#4 Point-Value representation
+Polynomial <Latex value="
+P = a_0x^0 + a_1x^1 + a_2x^2 + ... + a_{n-1}x^{n-1}"> of degree n  can be represented as a set of n pairs <Latex value="S = \{(x_0, y_0), (x_1, y_1), (x_2, y_2), ..., (x_{n-1}, y_{n-1}) \}"> where <Latex value="x_0 \neq x_1 \neq x_2 \neq ... \neq x_{n-1}"> and <Latex value="y_0=f(x_0), y_1=f(x_1), ..., y_{n-1}=f(x_{n-1})">
+#4 Multiplication of polynomials
+Let <Latex value="P = a_0x^0 + a_1x^1 + a_2x^2 + ... + a_{n-1}x^{n-1}"> and <Latex value="Q = b_0x^0 + b_1x^1 + b_2x^2 + ... + b_{n-1}x^{n-1}"> be two polynomials, both of degree n.
+In Point-Value representation, <Latex value="P = \{(x_0, y_0), (x_1, y_1), (x_2, y_2), ..., (x_{n-1}, y_{n-1}) \}"> and <Latex value="Q = \{(x_0, y_0'), (x_1, y_1'), (x_2, y_2'), ..., (x_{n-1}, y_{n-1}') \}">
+<Latex value="PQ = (a_0b_0)x^0 + (a_0b_1+a_1b_0)x^1 + ... + (a_{n-2}b_{n-1} + a_{n-1}b_{n-2})x^{2n-3} + (a_{n-1}b_{n-1})x^{2n-2}">
+In `Coefficient representation`, <Latex value="PQ = (a_0b_0, a_0b_1+a_1b_0, ..., a_{n-2}b_{n-1} + a_{n-1}b_{n-2}, a_{n-1}b_{n-1})">
+In `Point-Value representation`, <Latex value="PQ = \{(x_0, y_0y_0'), (x_1, y_1y_1'), (x_2, y_2y_2'), ..., (x_{n-1}, y_{n-1}y_{n-1}') \}">
+It is obviously that it is better to multiply polynomials in `Point-Value representation`(<Latex value="\mathcal{O}(n)">), rather than in `Coefficient representation`(<Latex value="\mathcal{O}(n^2)">).
+#3 Fast Fourier Transform
+In order to multiply faster, we need to transform a polynomial from `Coefficient representation` in `Point-Value representation`. All we need to do is to compute <Latex value="y_i = f(x_i)"> for some n different <Latex value="x_i">. We can do it easily in <Latex value="\mathcal{O}(n^2)">, but it is not *fast* enough.
+- Let's make use of an observation: <Latex value="f(x)"> and <Latex value="f(-x)"> can be computed in <Latex value="\mathcal{O}(n)">.
+Split the terms of polynomial <Latex value="P = a_0x^0 + a_1x^1 + a_2x^2 + ... + a_{2n-1}x^{2n-1}"> in two other polynomials:
+<Latex value="P_0 = (a_0x^0 + a_1x^2 + a_2x^4 + ... + a_{2n-2}x^{2n-2})">
+<Latex value="P_1 = (a_1x^0 + a_3x^2 + a_5x^4 + ... + a_{2n-1}x^{2n-2})">
+<Latex value="P = P_0 + xP_1">
+Now <Latex value="P_0"> and <Latex value="P_1"> are polynomials in <Latex value="x^2"> with <Latex value="P_0(x) = P_0(-x)"> and <Latex value="P_1(x) = P_1(-x)">. Consequently, it is enough to compute <Latex value="P_0(x)"> and <Latex value="P_1(x)"> in order to find <Latex value="P(x)"> and <Latex value="P(-x)">. Unfortunately, we can't continue using this trick if <Latex value="x_k\in"> <Latex value="\mathbb{R}">. *No problem... we will choose <Latex value="x_k\in"> <Latex value="\mathbb{C}">.*
+From this point, we will take into consideration only polinomials of degree <Latex value="2^n">.
+Let's choose <Latex value="x_k"> as the complex solutions of equation <Latex value="x^n=1">. More precisely, <Latex value="x_k=cos(\frac{k2\pi}{2^n})+i\ sin(\frac{k2\pi}{2^n})">. These roots have a noticeable property : <Latex value="x_k = -x_{k + 2^{n-1}} \Rightarrow {x_k}^2 = {x_{k + 2^{n-1}}}^2">. This allows us to use our `trick`. Moreover, we can use it more times.
+For <Latex value="n=3"> we will choose <Latex value="x_k=cos(\frac{k2\pi}{8})+i\ sin(\frac{k2\pi}{8})">. 
+<Latex value="(x_k)^2=cos(\frac{k2\pi}{4})+i\ sin(\frac{k2\pi}{4})">
+<Latex value="(x_k)^4=cos(\frac{k2\pi}{2})+i\ sin(\frac{k2\pi}{2})">
+<Latex value="(x_k)^8=cos(k2\pi)+i\ sin(k2\pi)">
+Consequently, we can use the same `trick` for <Latex value="P">, <Latex value="P_0">, <Latex value="P_1">, ...
+A recursive algorithm takes shape:
+```
+poly FFT(poly P){
+    if (degree(P) == 1)
+        return P[0]; // a0 * (cos(0) + i * sin(0)) = a0
+    P0 = split_even(P); // a0, a2, a4, ...
+    P1 = split_odd(P); // a1, a3, a5, ...
+    S0 = FFT(P0);
+    S1 = FFT(P1);
+    
+    step = cos(2*PI/degree(P)) + i * sin(2*PI/degree(P));
+    w = 1;
+    
+    for (k = 0; k < degree(P) / 2; k++) {
+        answer[k] = S0[k] + w * S1[k];
+        answer[k + degree(P) / 2] = S0[k] - w * S1[k];
+        w = w*step; 
+    }
+    return ans;
+}
+```
+
+#4 Transformation matrix of FFT
+The Fast Fourier Transform can be also considered as a transformation matrix.
+
+<Latex value="
+\begin{bmatrix}
+    {x_0}^0 \ {x_0}^1 \ {x_0}^2 \  \ldots \  {x_0}^{n-1} \\
+    {x_1}^0 \ {x_1}^1 \ {x_1}^2 \  \ldots \  {x_1}^{n-1} \\
+    {x_2}^0 \ {x_2}^1 \ {x_2}^2 \  \ldots \  {x_2}^{n-1} \\
+    \vdots \ \ \ \ \ \  \vdots  \ \ \ \ \ \   \vdots  \ \ \ \ \ \    \ddots \ \ \ \ \ \vdots \\
+    {x_{n - 1}}^0 \ {x_{n - 1}}^1 \ {x_{n - 1}}^2 \  \ldots \  {x_{n - 1}}^{n-1} 
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ a_2 \\ \vdots \\ a_{n-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+y_0 \\ y_1 \\ y_2 \\ \vdots \\ y_{n-1}
+\end{bmatrix}
+">
+Inverse FFT can be discovered by finding the inverse of this matrix.
+<Latex value="
+\begin{bmatrix}
+    {x_0}^0 \ {x_0}^1 \ {x_0}^2 \  \ldots \  {x_0}^{n-1} \\
+    {x_1}^0 \ {x_1}^1 \ {x_1}^2 \  \ldots \  {x_1}^{n-1} \\
+    {x_2}^0 \ {x_2}^1 \ {x_2}^2 \  \ldots \  {x_2}^{n-1} \\
+    \vdots \ \ \ \ \ \  \vdots  \ \ \ \ \ \   \vdots  \ \ \ \ \ \    \ddots \ \ \ \ \ \vdots \\
+    {x_{n - 1}}^0 \ {x_{n - 1}}^1 \ {x_{n - 1}}^2 \  \ldots \  {x_{n - 1}}^{n-1} 
+\end{bmatrix}
+^{-1} = \frac{1}{n}
+\begin{bmatrix}
+    {x_0'}^0 \ {x_0'}^1 \ {x_0'}^2 \  \ldots \  {x_0'}^{n-1} \\
+    {x_1'}^0 \ {x_1'}^1 \ {x_1'}^2 \  \ldots \  {x_1'}^{n-1} \\
+    {x_2'}^0 \ {x_2'}^1 \ {x_2'}^2 \  \ldots \  {x_2'}^{n-1} \\
+    \vdots \ \ \ \ \ \  \vdots  \ \ \ \ \ \   \vdots  \ \ \ \ \ \    \ddots \ \ \ \ \ \vdots \\
+    {x_{n - 1}'}^0 \ {x_{n - 1}'}^1 \ {x_{n - 1}'}^2 \  \ldots \  {x_{n - 1}'}^{n-1} 
+\end{bmatrix}
+">
+where <Latex value="x_k' = cos(-\frac{k2\pi}{n})+i\ sin(-\frac{k2\pi}{n})"> and n is the degree of the polynomial.
+Comparing these two matrices, we can observe that inverse-FFT can be implemented almost like FFT itself, only by changing `step = cos(2*PI/degree(P)) + i * sin(2*PI/degree(P));` with `step = cos(-2*PI/degree(P)) + i * sin(-2*PI/degree(P));` and dividing all values by `n`.
+`FFT`, as well as `inverse-FFT`, runs in <Latex value="\mathcal{O}(n\log{n})">.
+#4 Iterative implementation
+Implementing `FFT` can also be done iteratively.
+```
+poly Permute(poly P){
+    for (i = 0; i < degree(P); i++)
+        anwer[ reverse_bits(i) ] = P[i];
+    return answer;
+}
+
+poly FFT(poly P){
+    P = Permute(P);
+    for (len = 1; 2 * len <= degree(P); len <<= 1) {
+        step = cos(2*PI/degree(P)) + i * sin(2*PI/degree(P));
+        
+        for (i = 0; i < degree(P); i += 2 * len) {
+            w = 1;
+            
+            for (j = 0; j < len; j++) {
+                u = P[i + j];
+                v = P[i + len + j];
+                P[i + j] = u + w * v;
+                P[i + len + j] = u - w * v;
+                w = w * step;
+            }
+        }
+    }
+    
+    return P;
+}
+    
+```
+#4 Multiplication Scheme
+
+<Latex value="
+\begin{matrix}
+P \ \ \ \cdot \ \ \ \ Q \ \  \leadsto PQ \\
+\downarrow \ \ \ \ \ \ \ \ \  \downarrow \ \ \ \ \ \ \ \  \uparrow \\
+\ \ \ P' \ \ \ \cdot \ \ \  Q'  \rightarrow (PQ)'
+\end{matrix}
+">
+:heavy_multiplication_x: <Latex value="
+P \cdot Q \rightarrow PQ -\ would\  run\  in\ \mathcal{O}(n^2) - slow \ way
+"> 
+:heavy_check_mark: <Latex value="
+P \rightarrow P' -FFT\ in\ \mathcal{O}(n\log{n})
+"> 
+:heavy_check_mark: <Latex value="
+Q \rightarrow Q' -FFT\ in\ \mathcal{O}(n\log{n})
+"> 
+:heavy_check_mark: <Latex value="
+P' \cdot Q' \rightarrow (PQ)' -\ multiplication\ in\ \mathcal{O}(n)
+">
+:heavy_check_mark: <Latex value="
+(PQ)' \rightarrow PQ -inverse\_FFT\ in\ \mathcal{O}(n\log{n}) -\ best\ way
+"> 
+<Latex value="P'"> and <Latex value="Q'"> represent the `Point-Value representation` of <Latex value="P"> and <Latex value="Q">.
+
+#3 Fast Walsh–Hadamard transform
+Another interesting linear transformation is *Fast Walsh–Hadamard transform*. Just like *FFT*, it can be easily computed in <Latex value="\mathcal{O}(n^2)"> but we can improve it to run in <Latex value="\mathcal{O}(n\log{n})">.
+First of all, let's observe the general form of the matrix associated with it:
+<Latex value="
+H_{2^n} = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
++H_{2^{n-1}} \  +H_{2^{n-1}} \\
++H_{2^{n-1}} \  -H_{2^{n-1}}
+\end{bmatrix}
+; H_2=\frac{1}{\sqrt{2}}
+\begin{bmatrix}
++1\ +1\\
++1\ -1
+\end{bmatrix}
+">
+One special propery of this matrix is that <Latex value="
+H^{-1} = H">. 
+#4 Why is this transformation useful?
+We used *FFT* in order to multiply polynomials. More exactly, for every <Latex value="a_kx^k"> from polynomial <Latex value="P"> and <Latex value="b_rx^r"> from polynomial <Latex value="Q">, we added <Latex value="a_kb_rx^{k+r}"> to polynomial <Latex value="P \cdot Q">. Now we want to add <Latex value="a_kb_rx^{k \oplus r}"> to the resulting polynomial, where <Latex value="\oplus"> represents the *bitwise xor* of the two terms(<Latex value="k\ and\ r">). In order to do that, we need to apply the *Walsh–Hadamard transform* to the input polynomials.
+Note that we can remove constant <Latex value="\frac{1}{\sqrt{2}}"> by dividing all terms by <Latex value="\sqrt{n}"> in the final of every transformation. If we apply two consecutive transformations of this kind, all we need to do is to divide all terms by <Latex value="\sqrt{n} \cdot \sqrt{n} = n"> .
+Let's see how to implement it:
+```
+poly FWHT(poly P, bool inverse) {
+    for (len = 1; 2 * len <= degree(P); len <<= 1) {
+        for (i = 0; i < degree(P); i += 2 * len) {
+            for (j = 0; j < len; j++) {
+                u = P[i + j];
+                v = P[i + len + j];
+                P[i + j] = u + v;
+                P[i + len + j] = u - v;
+            }
+        }
+    }
+    
+    if (inverse) {
+        for (i = 0; i < degree(P); i++)
+            P[i] = P[i] / degree(P);
+    }
+
+    return P;
+}
+```
+Please remind that these codes are valid only when <Latex value="degree(P) = n = 2^k">, where <Latex value="k \in\  \mathbb{N}^{}">.
+The principle of this kind of `multiplication` is the same as the one described above :
+- Trasform <Latex value="P \rightarrow P'"> using <Latex value="P' = H \cdot P">
+- Trasform <Latex value="Q \rightarrow Q'"> using <Latex value="Q' = H \cdot Q">
+- Multiply in <Latex value="\mathcal{O}(n)\ P'\ by\ Q'"> - <Latex value="(PQ)'[i]=P'[i] \cdot Q'[i]">
+- Transform <Latex value="(PQ)'\ in\ PQ"> using <Latex value="PQ=H^{-1}(PQ)'">
+
+#4 Random Nim Generator - Round #11
+First of all, let's find out what we have to compute in this <Link href="https://csacademy.com/contest/archive/#task/random_nim_generator/" value="task" />. 
+`You want to generate an array of size N where each element is a random integer between 0 and K (inclusive). Count the number of possible arrays where the xor sum of the elements is strictly greater than 0 [...] output its value mod 30011.`
+How can we solve it when <Latex value="N = 2"> ?
+Let <Latex value="P"> be a polynomial of degree <Latex value="K+1"> with its `coefficient representation` <Latex value=" = \{1, 1, 1, 1, ..., 1\}(K+1\ times)">.
+What would we obtain if we `multiply` <Latex value="P\ by\ P"> (using <Latex value="\oplus">) ? We will get a polynomial with coefficients representing the number of pairs <Latex value="(a,b)"> where <Latex value="0 \le a,b \le K"> and <Latex value="a \oplus b = nr">, for every <Latex value="0 \le nr \le K'"> (<Latex value="K'"> being the smallest power of *two* greater than <Latex value="K">).
+Now we can extend this idea for <Latex value="N \ge 3">. Just think about multiplying <Latex value="P\cdot P\cdot P\cdot \ldots \cdot P = P^N ">. Do we get the answer that we want ? `YES`
+All we need to do is to raise <Latex value="P"> at the power <Latex value="N">(using `fast exponentiation` in `transformed representation`) and sum up all coefficients *strictly* greater than 0. Please note that all calculations must be done in `mod 30011`.
+Here is the source code that solves the problem :
+<Submission id={86563} />
+
+#3 Transformation using `and` as operator
+We saw that we can multiply polynomials using different operators at power <Latex value="( +, \oplus )">. A question that pops into our heads is whether we can extend this process to using `bitwise and` as operator or not. The answer is, of course, `YES`. By doing some math, I found this transformation matrix :
+<Latex value="T_{2^n}=
+\begin{bmatrix}
+0\ \ \ \ \ \ T_{2^{n-1}}\\
+T_{2^{n-1}}\ T_{2^{n-1}}
+\end{bmatrix}
+; T_2=
+\begin{bmatrix}
+0\ 1\\
+1\ 1
+\end{bmatrix}
+">
+Unlike *Walsh-Hadamard Matrix*, this matrix has a different inverse than itself.
+<Latex value="{T_{2^{n}}}^{-1}=
+\begin{bmatrix}
+-T_{2^{n-1}}\ T_{2^{n-1}}\\
+T_{2^{n-1}}\ \ \  0
+\end{bmatrix}
+;{T_2}^{-1}=
+\begin{bmatrix}
+-1\ +1\\
++1\ +0
+\end{bmatrix}
+">
+
+Let's see how to implement it :
+```
+poly transform(poly P, bool inverse) {
+    for (len = 1; 2 * len <= degree(P); len <<= 1) {
+        for (i = 0; i < degree(P); i += 2 * len) {
+            for (j = 0; j < len; j++) {
+                u = P[i + j];
+                v = P[i + len + j];
+                
+                if (!inverse) {
+                    P[i + j] = v;
+                    P[i + len + j] = u + v;
+                } else {
+                    P[i + j] = -u + v;
+                    P[i + len + j] = u;
+                }
+            }
+        }
+    }
+    
+    return P;
+}
+```
+
+#4 And Closure - Round #13
+First of all, let's find out what we have to compute in this <Link href="https://csacademy.com/contest/archive/#task/and-closure/" value="task" />. 
+`You are given an array of N integers. You can choose any subset of numbers and compute their binary and (operator & in some languages). Find the number of distinct results you can get. [...] N <= 100.000, val_max <= 1.000.000`
+Let <Latex value="P"> be a polynomial of degree <Latex value="2^{20}"> with its `coefficient representation` <Latex value=" c = \{1, 0, 0, 1, 1, 0, 0, ...\}\ (c[i] = 1\ \ if\ \ i \in input\_set,\ c[i] = 0\ otherwise)">. 
+- Apply the new transformation to this polynomial (<Latex value="P' = T\cdot P">).
+- Raise <Latex value="P'"> at the power <Latex value="N"> using `fast exponentiation` (<Latex value="{P'}^N=P'\cdot P'\cdot \ldots \cdot P')">
+- Apply the inverse transformation(<Latex value="P^N=T^{-1}\cdot {P'}^N">)
+Now we obtained a polynomial with coefficients representing `in how many ways we can choose N elements(repetitions are allowed) such that their bitwise and is equal to i` where <Latex value="0 \le i \le 2^{20}-1">. If <Latex value="c[i] = 0">, there is no subset with *binary and* equal to <Latex value="i">. Otherwise, there exists at least *one*. Because of the large numbers resulted from multiplication, we need to compute all values in `modulo`(any big prime number). To be <Latex value="100\%"> sure that working in `modulo` won't `hide` any solution, I recommend you to repeat the process once again with a different `modulo`. 
+All we have left to do is to count how many <Latex value="c[i]"> are different than <Latex value="0">. 
+Here is the source code that solves the problem :
+<Submission id={86719} />
+`Just think about it:` Let's suppose that we have to count only subsets with at most <Latex value="\frac{N}{2}"> elements. How can we do that ?
+
+#4 Final conclusions
+Personally, I found this subject very rich and interesting. I tried to include in this article all information that helped me understand the principles of this kind of linear transfromations. I hope you enjoyed it :)
+Feel free to comment and ask any question that comes into your mind. Any positive or negative feedback is welcome, too.
+

@@ -1,0 +1,28 @@
+#4 How to determine the Walsh-Hadamard Matrix
+First of all, let's find a <Latex value="2\times 2"> matrix that can be used like the Walsh-Hadamard Matrix. Let <Latex value="T"> be this transfromation matrix and <Latex value="(a_0,a_1),(b_0,b_1)"> two vectors. These equations must be true:
+<Latex value="(a_0,a_1)\ \$\ (b_0,b_1) = (a_0b_0+a_1b_1, a_0b_1+a_1b_0)">
+<Latex value="T(a_0,a_1)\ \cdot\ T(b_0,b_1) = T(a_0b_0+a_1b_1, a_0b_1+a_1b_0)">
+where <Latex value="\$"> represents our convolution and <Latex value="T = 
+\begin{bmatrix}
+c_0\ c_1\\
+c_2\ c_3
+\end{bmatrix}
+">
+<Latex value="T(a_0,a_1) = (c_0a_0+c_1a_1, c_2a_0 + c_3a_1)">
+<Latex value="T(b_0,b_1) = (c_0b_0+c_1b_1, c_2b_0 + c_3b_1)">
+<Latex value="T(a_0b_0+a_1b_1, a_0b_1+a_1b_0)=(c_0(a_0b_0+a_1b_1) + c_1(a_0b_0+a_1b_1),c_2(a_0b_0+a_1b_1) + c_3(a_0b_0+a_1b_1))">
+<Latex value="
+(c_0a_0+c_1a_1, c_2a_0 + c_3a_1) \cdot (c_0b_0+c_1b_1, c_2b_0 + c_3b_1) = (c_0(a_0b_0+a_1b_1) + c_1(a_0b_0+a_1b_1),c_2(a_0b_0+a_1b_1) + c_3(a_0b_0+a_1b_1))
+">
+<Latex value="\ldots">
+<Latex value="
+{c_{0/2}}^2a_0b_0+c_{0/2}c_{1/3}(a_0b_1+a_1b_0)+{c_{1/3}}^2a_1b_1 = c_{0/2}(a_0b_0+c_1b_1)+c_{1/3}(a_0b_1+a_1b_0)">
+We can observe that <Latex value="c_0=c_1=1"> and <Latex value="c_2=1,c_3=-1"> solve the equation.
+So, we can choose <Latex value="T = 
+\begin{bmatrix}
++1\ +1\\
++1\ -1
+\end{bmatrix}
+">
+The general form for <Latex value="n = 2^k"> can be deducted starting from this matrix.
+

@@ -1,0 +1,4526 @@
+variable xme
+variable yme
+variable xpa
+variable ypa
+variable xde
+variable yde
+variable xva
+variable yva
+variable room 3025 cells
+variable aux_room 3025 cells
+variable xne
+variable yne
+variable i
+variable j
+variable aux
+variable aux2
+variable x
+variable y
+variable xx
+variable yy
+variable dir
+variable dir2
+variable l
+variable r
+variable qx 3025 cells
+variable qy 3025 cells
+variable ddx 6 cells
+variable ddy 6 cells
+variable jobs
+variable step
+variable lxpa 1111 cells
+variable lypa 1111 cells
+variable lxde 1111 cells
+variable lyde 1111 cells
+variable cntpa
+variable cntde
+variable current_job
+variable lxaux 1111 cells
+variable lyaux 1111 cells
+variable smxx
+variable smyy
+variable smaux
+variable bestpair
+variable bestdist
+variable deltax
+variable deltay
+variable temp
+variable xpa2
+variable ypa2
+variable auxv
+variable helper
+variable cntblack
+variable nhelp
+variable mhelp
+variable llxpa 1111 cells
+variable llypa 1111 cells
+variable llxde 1111 cells
+variable llyde 1111 cells
+variable valid 3025 cells
+variable useless
+variable dist 3025 cells
+variable actdist
+variable newdist
+variable idist
+variable jdist
+variable xdist
+variable ydist
+variable shuffleid 1111 cells
+variable additcnt
+variable additfr 1111 cells
+variable additse 1111 cells
+variable lpav 1111 cells
+variable ldev 1111 cells
+variable current_pa
+variable current_de
+variable have_job
+variable movedpa
+variable menotmoved
+variable xmelast
+variable ymelast
+variable xblockedpa
+variable yblockedpa
+variable try_blockva
+variable rezolvate
+variable steps_pa
+variable put2
+variable biti
+variable sleep
+variable bestdistpa
+-1 xva !
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+0 room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+step @ 
+1 + step !
+0 jobs !
+0 cntpa !
+0 cntde !
+0 i !
+i @ 
+input_objects_count @ 
+ < 
+while
+i @ 
+aux !
+aux @ 
+3 * aux !
+aux @ 
+aux2 !
+aux2 @ 
+1 + aux2 !
+input_objects
+aux2 @ 
++ @ 
+y !
+aux @ 
+aux2 !
+aux2 @ 
+2 + aux2 !
+input_objects
+aux2 @ 
++ @ 
+x !
+input_objects 
+aux @ 
+ + @ 1 =
+if
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+input_objects 
+aux @ 
+ + @ 2 =
+if
+x @ 
+lxpa
+cntpa @ 
++ !
+y @ 
+lypa
+cntpa @ 
++ !
+cntpa @ 
+1 + cntpa !
+jobs @ 
+1 + jobs !
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+input_objects 
+aux @ 
+ + @ 3 =
+if
+x @ 
+lxde
+cntde @ 
++ !
+y @ 
+lyde
+cntde @ 
++ !
+cntde @ 
+1 + cntde !
+then
+input_objects 
+aux @ 
+ + @ 4 =
+if
+x @ 
+xme !
+y @ 
+yme !
+then
+input_objects 
+aux @ 
+ + @ 5 =
+if
+x @ 
+xva !
+y @ 
+yva !
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+i @ 
+1 + i !
+i @ 
+input_objects_count @ 
+ < 
+repeat
+jobs @ 21 =
+if
+input_rows @ 14 =
+if
+step @ 
+1 = 
+if
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+0 bestpair !
+100000 bestdist !
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+1 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+then
+bestpair @ 
+current_pa !
+bestdist @ 
+100000 = 
+if
+-1 quit
+else
+then
+1 have_job !
+6 temp !
+8 current_pa !
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+bestpair !
+100000 bestdist !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xpa @ 
+qx 0 + !
+ypa @ 
+qy 0 + !
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+bestpair @ 
+current_de !
+1 have_job !
+then
+then
+then
+put2 @ 
+0 = 
+if
+1 put2 !
+then
+step @ 999 >=
+if
+-1 quit
+then
+have_job @ 
+0 = 
+if
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+0 bestpair !
+100000 bestdist !
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+1 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+then
+bestpair @ 
+current_pa !
+bestdist @ 
+100000 = 
+if
+-1 quit
+else
+then
+1 have_job !
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+bestpair !
+100000 bestdist !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xpa @ 
+qx 0 + !
+ypa @ 
+qy 0 + !
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+bestpair @ 
+current_de !
+then
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+lxde
+current_de @ 
++ @ 
+xde !
+lyde
+current_de @ 
++ @ 
+yde !
+xpa @ 
+xde @ 
+=
+if
+ypa @ 
+yde @ 
+=
+if
+99 lpav
+current_pa @ 
++ !
+99 ldev
+current_de @ 
++ !
+0 have_job !
+rezolvate @ 
+1 + rezolvate !
+0 steps_pa !
+biti @ 
+put2 @ 
+ + biti !
+put2 @ 
+2 * put2 !
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+0 bestpair !
+100000 bestdist !
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+1 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+rezolvate @ 10 =
+if
+else
+then
+rezolvate @ 8 =
+if
+biti @ 2080769 =
+if
+else
+then
+then
+then
+bestpair @ 
+current_pa !
+bestdist @ 
+100000 = 
+if
+-1 quit
+else
+then
+1 have_job !
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+bestpair !
+100000 bestdist !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xpa @ 
+qx 0 + !
+ypa @ 
+qy 0 + !
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+bestpair @ 
+current_de !
+lxde
+current_de @ 
++ @ 
+xde !
+lyde
+current_de @ 
++ @ 
+yde !
+then
+then
+xpa @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+ypa @ 
+ + aux2 !
+0 room
+aux2 @ 
++ !
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 l !
+0 r !
+xde @ 
+qx 0 + !
+yde @ 
+qy 0 + !
+xde @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yde @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+-1 + smxx !
+yy @ 
+smyy !
+smyy @ 
+0 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+1 + smxx !
+yy @ 
+smyy !
+smyy @ 
+0 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+0 + smxx !
+yy @ 
+smyy !
+smyy @ 
+-1 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+0 + smxx !
+yy @ 
+smyy !
+smyy @ 
+1 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+l @ 
+r @ 
+<= 
+repeat
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir !
+-1 ddx 1 + !
+1 ddx 2 + !
+0 ddx 3 + !
+0 ddx 4 + !
+0 ddy 1 + !
+0 ddy 2 + !
+-1 ddy 3 + !
+1 ddy 4 + !
+xpa @ 
+xne !
+ypa @ 
+yne !
+xne @ 
+ddx
+dir @ 
+ + @ 
+-
+xne!
+yne @ 
+ddy
+dir @ 
+ + @ 
+-
+yne!
+xpa @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+ypa @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+xne @ 
+xme @ 
+=
+if
+yne @ 
+yme @ 
+=
+if
+dir @ 
+else
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 l !
+0 r !
+xne @ 
+qx 0 + !
+yne @ 
+qy 0 + !
+xne @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yne @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir2 !
+dir2 @ 
+then
+else
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 l !
+0 r !
+xne @ 
+qx 0 + !
+yne @ 
+qy 0 + !
+xne @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yne @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir2 !
+dir2 @ 
+then
+dup 0 =
+if
+lpav
+current_pa @ 
++ @ 
+temp !
+temp @ 
+1 + temp !
+temp @ 
+lpav
+current_pa @ 
++ !
+0 have_job !
+put2 @ 
+2 * put2 !
+then

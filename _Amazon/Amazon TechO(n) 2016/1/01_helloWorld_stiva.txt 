@@ -1,0 +1,12 @@
+variable step
+
+step @
+0 =
+if 
+   -1 2 4 1 4 2
+   1 step !
+then
+
+
+
+

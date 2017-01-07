@@ -1,0 +1,4642 @@
+variable xme
+variable yme
+variable xpa
+variable ypa
+variable xde
+variable yde
+variable xva
+variable yva
+variable room 3025 cells
+variable aux_room 3025 cells
+variable xne
+variable yne
+variable i
+variable j
+variable aux
+variable aux2
+variable x
+variable y
+variable xx
+variable yy
+variable dir
+variable dir2
+variable l
+variable r
+variable qx 3025 cells
+variable qy 3025 cells
+variable ddx 6 cells
+variable ddy 6 cells
+variable jobs
+variable step
+variable lxpa 1111 cells
+variable lypa 1111 cells
+variable lxde 1111 cells
+variable lyde 1111 cells
+variable cntpa
+variable cntde
+variable current_job
+variable lxaux 1111 cells
+variable lyaux 1111 cells
+variable smxx
+variable smyy
+variable smaux
+variable bestpair
+variable bestdist
+variable deltax
+variable deltay
+variable temp
+variable xpa2
+variable ypa2
+variable auxv
+variable helper
+variable cntblack
+variable nhelp
+variable mhelp
+variable llxpa 1111 cells
+variable llypa 1111 cells
+variable llxde 1111 cells
+variable llyde 1111 cells
+variable valid 3025 cells
+variable useless
+variable dist 3025 cells
+variable actdist
+variable newdist
+variable idist
+variable jdist
+variable xdist
+variable ydist
+variable shuffleid 1111 cells
+variable additcnt
+variable additfr 1111 cells
+variable additse 1111 cells
+variable lpav 1111 cells
+variable ldev 1111 cells
+variable current_pa
+variable current_de
+variable have_job
+variable movedpa
+variable menotmoved
+variable xmelast
+variable ymelast
+variable xblockedp
+variable yblockepa
+variable try_blockva
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+0 room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+step @ 
+1 + step !
+0 jobs !
+-1 xva !
+0 cntpa !
+0 cntde !
+0 i !
+i @ 
+input_objects_count @ 
+ < 
+while
+i @ 
+aux !
+aux @ 
+3 * aux !
+aux @ 
+aux2 !
+aux2 @ 
+1 + aux2 !
+input_objects
+aux2 @ 
++ @ 
+y !
+aux @ 
+aux2 !
+aux2 @ 
+2 + aux2 !
+input_objects
+aux2 @ 
++ @ 
+x !
+input_objects 
+aux @ 
+ + @ 1 =
+if
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+input_objects 
+aux @ 
+ + @ 2 =
+if
+x @ 
+lxpa
+cntpa @ 
++ !
+y @ 
+lypa
+cntpa @ 
++ !
+cntpa @ 
+1 + cntpa !
+jobs @ 
+1 + jobs !
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+input_objects 
+aux @ 
+ + @ 3 =
+if
+x @ 
+lxde
+cntde @ 
++ !
+y @ 
+lyde
+cntde @ 
++ !
+cntde @ 
+1 + cntde !
+then
+input_objects 
+aux @ 
+ + @ 4 =
+if
+x @ 
+xme !
+y @ 
+yme !
+then
+input_objects 
+aux @ 
+ + @ 5 =
+if
+x @ 
+xva !
+y @ 
+yva !
+x @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+y @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+then
+i @ 
+1 + i !
+i @ 
+input_objects_count @ 
+ < 
+repeat
+xva @ 0 >=
+if
+try_blockva @ 
+0 = 
+if
+step @ 
+1 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lxpa
+i @ 
++ @ 
+llxpa
+i @ 
++ !
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lypa
+i @ 
++ @ 
+llypa
+i @ 
++ !
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+else
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lxpa
+i @ 
++ @ 
+aux !
+llxpa
+i @ 
++ @ 
+aux2 !
+aux @ 
+aux2 @ 
+=
+if
+lypa
+i @ 
++ @ 
+aux !
+llypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+aux2 @ 
+=
+if
+else
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+1 movedpa !
+lxpa
+i @ 
++ @ 
+xblockedp !
+lypa
+i @ 
++ @ 
+yblockepa !
+then
+else
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+1 movedpa !
+lxpa
+i @ 
++ @ 
+xblockedp !
+lypa
+i @ 
++ @ 
+yblockepa !
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+xme @ 
+xmelast @ 
+=
+if
+yme @ 
+ymelast @ 
+=
+if
+1 menotmoved !
+else
+then
+else
+then
+menotmoved @ 
+0 = 
+if
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xva @ 
+qx 0 + !
+yva @ 
+qy 0 + !
+xva @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yva @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir2 !
+dir2 @ 
+xme @ 
+xmelast !
+yme @ 
+ymelast !
+quit
+else
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lxpa
+i @ 
++ @ 
+aux !
+aux @ 
+xblockedp @ 
+=
+if
+lypa
+i @ 
++ @ 
+aux !
+aux @ 
+1 - aux !
+aux @ 
+yblockepa @ 
+=
+if
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+else
+aux @ 
+2 + aux !
+aux @ 
+yblockepa @ 
+=
+if
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+then
+then
+then
+lypa
+i @ 
++ @ 
+aux !
+aux @ 
+yblockepa @ 
+=
+if
+lxpa
+i @ 
++ @ 
+aux !
+aux @ 
+1 - aux !
+aux @ 
+xblockedp @ 
+=
+if
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+else
+aux @ 
+2 + aux !
+aux @ 
+xblockedp @ 
+=
+if
+6 temp !
+temp @ 
+lpav
+i @ 
++ !
+then
+then
+else
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+1 try_blockva !
+then
+then
+then
+current_job @ 
+jobs @ 
+>= 
+if
+0 current_job !
+then
+have_job @ 
+0 = 
+if
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xme @ 
+qx 0 + !
+yme @ 
+qy 0 + !
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+0 bestpair !
+100000 bestdist !
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+1 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+2 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+3 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+4 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+5 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+6 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestdist @ 
+100000 = 
+if
+0 lpav 0 + !
+0 ldev 0 + !
+0 lpav 1 + !
+0 ldev 1 + !
+0 lpav 2 + !
+0 ldev 2 + !
+0 lpav 3 + !
+0 ldev 3 + !
+0 lpav 4 + !
+0 ldev 4 + !
+0 lpav 5 + !
+0 ldev 5 + !
+0 lpav 6 + !
+0 ldev 6 + !
+0 lpav 7 + !
+0 ldev 7 + !
+0 lpav 8 + !
+0 ldev 8 + !
+0 lpav 9 + !
+0 ldev 9 + !
+0 lpav 10 + !
+0 ldev 10 + !
+0 lpav 11 + !
+0 ldev 11 + !
+0 lpav 12 + !
+0 ldev 12 + !
+0 lpav 13 + !
+0 ldev 13 + !
+0 lpav 14 + !
+0 ldev 14 + !
+0 lpav 15 + !
+0 ldev 15 + !
+0 lpav 16 + !
+0 ldev 16 + !
+0 lpav 17 + !
+0 ldev 17 + !
+0 lpav 18 + !
+0 ldev 18 + !
+0 lpav 19 + !
+0 ldev 19 + !
+0 lpav 20 + !
+0 ldev 20 + !
+0 lpav 21 + !
+0 ldev 21 + !
+0 lpav 22 + !
+0 ldev 22 + !
+0 lpav 23 + !
+0 ldev 23 + !
+0 lpav 24 + !
+0 ldev 24 + !
+0 lpav 25 + !
+0 ldev 25 + !
+0 lpav 26 + !
+0 ldev 26 + !
+0 lpav 27 + !
+0 ldev 27 + !
+0 lpav 28 + !
+0 ldev 28 + !
+0 lpav 29 + !
+0 ldev 29 + !
+0 lpav 30 + !
+0 ldev 30 + !
+0 lpav 31 + !
+0 ldev 31 + !
+0 lpav 32 + !
+0 ldev 32 + !
+0 lpav 33 + !
+0 ldev 33 + !
+0 lpav 34 + !
+0 ldev 34 + !
+0 lpav 35 + !
+0 ldev 35 + !
+0 lpav 36 + !
+0 ldev 36 + !
+0 lpav 37 + !
+0 ldev 37 + !
+0 lpav 38 + !
+0 ldev 38 + !
+0 lpav 39 + !
+0 ldev 39 + !
+0 lpav 40 + !
+0 ldev 40 + !
+0 lpav 41 + !
+0 ldev 41 + !
+0 lpav 42 + !
+0 ldev 42 + !
+0 lpav 43 + !
+0 ldev 43 + !
+0 lpav 44 + !
+0 ldev 44 + !
+0 lpav 45 + !
+0 ldev 45 + !
+0 lpav 46 + !
+0 ldev 46 + !
+0 lpav 47 + !
+0 ldev 47 + !
+0 lpav 48 + !
+0 ldev 48 + !
+0 lpav 49 + !
+0 ldev 49 + !
+0 lpav 50 + !
+0 ldev 50 + !
+0 lpav 51 + !
+0 ldev 51 + !
+0 lpav 52 + !
+0 ldev 52 + !
+0 lpav 53 + !
+0 ldev 53 + !
+0 lpav 54 + !
+0 ldev 54 + !
+0 lpav 55 + !
+0 ldev 55 + !
+0 lpav 56 + !
+0 ldev 56 + !
+0 lpav 57 + !
+0 ldev 57 + !
+0 lpav 58 + !
+0 ldev 58 + !
+0 lpav 59 + !
+0 ldev 59 + !
+0 lpav 60 + !
+0 ldev 60 + !
+0 lpav 61 + !
+0 ldev 61 + !
+0 lpav 62 + !
+0 ldev 62 + !
+0 lpav 63 + !
+0 ldev 63 + !
+0 lpav 64 + !
+0 ldev 64 + !
+0 lpav 65 + !
+0 ldev 65 + !
+0 lpav 66 + !
+0 ldev 66 + !
+0 lpav 67 + !
+0 ldev 67 + !
+0 lpav 68 + !
+0 ldev 68 + !
+0 lpav 69 + !
+0 ldev 69 + !
+0 lpav 70 + !
+0 ldev 70 + !
+0 lpav 71 + !
+0 ldev 71 + !
+0 lpav 72 + !
+0 ldev 72 + !
+0 lpav 73 + !
+0 ldev 73 + !
+0 lpav 74 + !
+0 ldev 74 + !
+0 lpav 75 + !
+0 ldev 75 + !
+0 lpav 76 + !
+0 ldev 76 + !
+0 lpav 77 + !
+0 ldev 77 + !
+0 lpav 78 + !
+0 ldev 78 + !
+0 lpav 79 + !
+0 ldev 79 + !
+0 lpav 80 + !
+0 ldev 80 + !
+0 lpav 81 + !
+0 ldev 81 + !
+0 lpav 82 + !
+0 ldev 82 + !
+0 lpav 83 + !
+0 ldev 83 + !
+0 lpav 84 + !
+0 ldev 84 + !
+0 lpav 85 + !
+0 ldev 85 + !
+0 lpav 86 + !
+0 ldev 86 + !
+0 lpav 87 + !
+0 ldev 87 + !
+0 lpav 88 + !
+0 ldev 88 + !
+0 lpav 89 + !
+0 ldev 89 + !
+0 lpav 90 + !
+0 ldev 90 + !
+0 lpav 91 + !
+0 ldev 91 + !
+0 lpav 92 + !
+0 ldev 92 + !
+0 lpav 93 + !
+0 ldev 93 + !
+0 lpav 94 + !
+0 ldev 94 + !
+0 lpav 95 + !
+0 ldev 95 + !
+0 lpav 96 + !
+0 ldev 96 + !
+0 lpav 97 + !
+0 ldev 97 + !
+0 lpav 98 + !
+0 ldev 98 + !
+0 lpav 99 + !
+0 ldev 99 + !
+0 lpav 100 + !
+0 ldev 100 + !
+0 lpav 101 + !
+0 ldev 101 + !
+0 lpav 102 + !
+0 ldev 102 + !
+0 lpav 103 + !
+0 ldev 103 + !
+0 lpav 104 + !
+0 ldev 104 + !
+0 lpav 105 + !
+0 ldev 105 + !
+0 lpav 106 + !
+0 ldev 106 + !
+0 lpav 107 + !
+0 ldev 107 + !
+0 lpav 108 + !
+0 ldev 108 + !
+0 lpav 109 + !
+0 ldev 109 + !
+0 lpav 110 + !
+0 ldev 110 + !
+0 lpav 111 + !
+0 ldev 111 + !
+0 lpav 112 + !
+0 ldev 112 + !
+0 lpav 113 + !
+0 ldev 113 + !
+0 lpav 114 + !
+0 ldev 114 + !
+0 lpav 115 + !
+0 ldev 115 + !
+0 lpav 116 + !
+0 ldev 116 + !
+0 lpav 117 + !
+0 ldev 117 + !
+0 lpav 118 + !
+0 ldev 118 + !
+0 lpav 119 + !
+0 ldev 119 + !
+0 lpav 120 + !
+0 ldev 120 + !
+0 lpav 121 + !
+0 ldev 121 + !
+0 lpav 122 + !
+0 ldev 122 + !
+0 lpav 123 + !
+0 ldev 123 + !
+0 lpav 124 + !
+0 ldev 124 + !
+0 lpav 125 + !
+0 ldev 125 + !
+0 lpav 126 + !
+0 ldev 126 + !
+0 lpav 127 + !
+0 ldev 127 + !
+0 lpav 128 + !
+0 ldev 128 + !
+0 lpav 129 + !
+0 ldev 129 + !
+0 lpav 130 + !
+0 ldev 130 + !
+0 lpav 131 + !
+0 ldev 131 + !
+0 lpav 132 + !
+0 ldev 132 + !
+0 lpav 133 + !
+0 ldev 133 + !
+0 lpav 134 + !
+0 ldev 134 + !
+0 lpav 135 + !
+0 ldev 135 + !
+0 lpav 136 + !
+0 ldev 136 + !
+0 lpav 137 + !
+0 ldev 137 + !
+0 lpav 138 + !
+0 ldev 138 + !
+0 lpav 139 + !
+0 ldev 139 + !
+0 lpav 140 + !
+0 ldev 140 + !
+0 lpav 141 + !
+0 ldev 141 + !
+0 lpav 142 + !
+0 ldev 142 + !
+0 lpav 143 + !
+0 ldev 143 + !
+0 lpav 144 + !
+0 ldev 144 + !
+0 lpav 145 + !
+0 ldev 145 + !
+0 lpav 146 + !
+0 ldev 146 + !
+0 lpav 147 + !
+0 ldev 147 + !
+0 lpav 148 + !
+0 ldev 148 + !
+0 lpav 149 + !
+0 ldev 149 + !
+0 lpav 150 + !
+0 ldev 150 + !
+0 lpav 151 + !
+0 ldev 151 + !
+0 lpav 152 + !
+0 ldev 152 + !
+0 lpav 153 + !
+0 ldev 153 + !
+0 lpav 154 + !
+0 ldev 154 + !
+0 lpav 155 + !
+0 ldev 155 + !
+0 lpav 156 + !
+0 ldev 156 + !
+0 lpav 157 + !
+0 ldev 157 + !
+0 lpav 158 + !
+0 ldev 158 + !
+0 lpav 159 + !
+0 ldev 159 + !
+0 lpav 160 + !
+0 ldev 160 + !
+0 lpav 161 + !
+0 ldev 161 + !
+0 lpav 162 + !
+0 ldev 162 + !
+0 lpav 163 + !
+0 ldev 163 + !
+0 lpav 164 + !
+0 ldev 164 + !
+0 lpav 165 + !
+0 ldev 165 + !
+0 lpav 166 + !
+0 ldev 166 + !
+0 lpav 167 + !
+0 ldev 167 + !
+0 lpav 168 + !
+0 ldev 168 + !
+0 lpav 169 + !
+0 ldev 169 + !
+0 lpav 170 + !
+0 ldev 170 + !
+0 lpav 171 + !
+0 ldev 171 + !
+0 lpav 172 + !
+0 ldev 172 + !
+0 lpav 173 + !
+0 ldev 173 + !
+0 lpav 174 + !
+0 ldev 174 + !
+0 lpav 175 + !
+0 ldev 175 + !
+0 lpav 176 + !
+0 ldev 176 + !
+0 lpav 177 + !
+0 ldev 177 + !
+0 lpav 178 + !
+0 ldev 178 + !
+0 lpav 179 + !
+0 ldev 179 + !
+0 lpav 180 + !
+0 ldev 180 + !
+0 lpav 181 + !
+0 ldev 181 + !
+0 lpav 182 + !
+0 ldev 182 + !
+0 lpav 183 + !
+0 ldev 183 + !
+0 lpav 184 + !
+0 ldev 184 + !
+0 lpav 185 + !
+0 ldev 185 + !
+0 lpav 186 + !
+0 ldev 186 + !
+0 lpav 187 + !
+0 ldev 187 + !
+0 lpav 188 + !
+0 ldev 188 + !
+0 lpav 189 + !
+0 ldev 189 + !
+0 lpav 190 + !
+0 ldev 190 + !
+0 lpav 191 + !
+0 ldev 191 + !
+0 lpav 192 + !
+0 ldev 192 + !
+0 lpav 193 + !
+0 ldev 193 + !
+0 lpav 194 + !
+0 ldev 194 + !
+0 lpav 195 + !
+0 ldev 195 + !
+0 lpav 196 + !
+0 ldev 196 + !
+0 lpav 197 + !
+0 ldev 197 + !
+0 lpav 198 + !
+0 ldev 198 + !
+0 lpav 199 + !
+0 ldev 199 + !
+0 lpav 200 + !
+0 ldev 200 + !
+0 lpav 201 + !
+0 ldev 201 + !
+0 lpav 202 + !
+0 ldev 202 + !
+0 lpav 203 + !
+0 ldev 203 + !
+0 lpav 204 + !
+0 ldev 204 + !
+0 lpav 205 + !
+0 ldev 205 + !
+0 lpav 206 + !
+0 ldev 206 + !
+0 lpav 207 + !
+0 ldev 207 + !
+0 lpav 208 + !
+0 ldev 208 + !
+0 lpav 209 + !
+0 ldev 209 + !
+0 lpav 210 + !
+0 ldev 210 + !
+0 lpav 211 + !
+0 ldev 211 + !
+0 lpav 212 + !
+0 ldev 212 + !
+0 lpav 213 + !
+0 ldev 213 + !
+0 lpav 214 + !
+0 ldev 214 + !
+0 lpav 215 + !
+0 ldev 215 + !
+0 lpav 216 + !
+0 ldev 216 + !
+0 lpav 217 + !
+0 ldev 217 + !
+0 lpav 218 + !
+0 ldev 218 + !
+0 lpav 219 + !
+0 ldev 219 + !
+0 lpav 220 + !
+0 ldev 220 + !
+0 lpav 221 + !
+0 ldev 221 + !
+0 lpav 222 + !
+0 ldev 222 + !
+0 lpav 223 + !
+0 ldev 223 + !
+0 lpav 224 + !
+0 ldev 224 + !
+0 lpav 225 + !
+0 ldev 225 + !
+0 lpav 226 + !
+0 ldev 226 + !
+0 lpav 227 + !
+0 ldev 227 + !
+0 lpav 228 + !
+0 ldev 228 + !
+0 lpav 229 + !
+0 ldev 229 + !
+0 lpav 230 + !
+0 ldev 230 + !
+0 lpav 231 + !
+0 ldev 231 + !
+0 lpav 232 + !
+0 ldev 232 + !
+0 lpav 233 + !
+0 ldev 233 + !
+0 lpav 234 + !
+0 ldev 234 + !
+0 lpav 235 + !
+0 ldev 235 + !
+0 lpav 236 + !
+0 ldev 236 + !
+0 lpav 237 + !
+0 ldev 237 + !
+0 lpav 238 + !
+0 ldev 238 + !
+0 lpav 239 + !
+0 ldev 239 + !
+0 lpav 240 + !
+0 ldev 240 + !
+0 lpav 241 + !
+0 ldev 241 + !
+0 lpav 242 + !
+0 ldev 242 + !
+0 lpav 243 + !
+0 ldev 243 + !
+0 lpav 244 + !
+0 ldev 244 + !
+0 lpav 245 + !
+0 ldev 245 + !
+0 lpav 246 + !
+0 ldev 246 + !
+0 lpav 247 + !
+0 ldev 247 + !
+0 lpav 248 + !
+0 ldev 248 + !
+0 lpav 249 + !
+0 ldev 249 + !
+0 lpav 250 + !
+0 ldev 250 + !
+0 lpav 251 + !
+0 ldev 251 + !
+0 lpav 252 + !
+0 ldev 252 + !
+0 lpav 253 + !
+0 ldev 253 + !
+0 lpav 254 + !
+0 ldev 254 + !
+0 lpav 255 + !
+0 ldev 255 + !
+0 lpav 256 + !
+0 ldev 256 + !
+0 lpav 257 + !
+0 ldev 257 + !
+0 lpav 258 + !
+0 ldev 258 + !
+0 lpav 259 + !
+0 ldev 259 + !
+0 lpav 260 + !
+0 ldev 260 + !
+0 lpav 261 + !
+0 ldev 261 + !
+0 lpav 262 + !
+0 ldev 262 + !
+0 lpav 263 + !
+0 ldev 263 + !
+0 lpav 264 + !
+0 ldev 264 + !
+0 lpav 265 + !
+0 ldev 265 + !
+0 lpav 266 + !
+0 ldev 266 + !
+0 lpav 267 + !
+0 ldev 267 + !
+0 lpav 268 + !
+0 ldev 268 + !
+0 lpav 269 + !
+0 ldev 269 + !
+0 lpav 270 + !
+0 ldev 270 + !
+0 lpav 271 + !
+0 ldev 271 + !
+0 lpav 272 + !
+0 ldev 272 + !
+0 lpav 273 + !
+0 ldev 273 + !
+0 lpav 274 + !
+0 ldev 274 + !
+0 lpav 275 + !
+0 ldev 275 + !
+0 lpav 276 + !
+0 ldev 276 + !
+0 lpav 277 + !
+0 ldev 277 + !
+0 lpav 278 + !
+0 ldev 278 + !
+0 lpav 279 + !
+0 ldev 279 + !
+0 lpav 280 + !
+0 ldev 280 + !
+0 lpav 281 + !
+0 ldev 281 + !
+0 lpav 282 + !
+0 ldev 282 + !
+0 lpav 283 + !
+0 ldev 283 + !
+0 lpav 284 + !
+0 ldev 284 + !
+0 lpav 285 + !
+0 ldev 285 + !
+0 lpav 286 + !
+0 ldev 286 + !
+0 lpav 287 + !
+0 ldev 287 + !
+0 lpav 288 + !
+0 ldev 288 + !
+0 lpav 289 + !
+0 ldev 289 + !
+0 lpav 290 + !
+0 ldev 290 + !
+0 lpav 291 + !
+0 ldev 291 + !
+0 lpav 292 + !
+0 ldev 292 + !
+0 lpav 293 + !
+0 ldev 293 + !
+0 lpav 294 + !
+0 ldev 294 + !
+0 lpav 295 + !
+0 ldev 295 + !
+0 lpav 296 + !
+0 ldev 296 + !
+0 lpav 297 + !
+0 ldev 297 + !
+0 lpav 298 + !
+0 ldev 298 + !
+0 lpav 299 + !
+0 ldev 299 + !
+0 lpav 300 + !
+0 ldev 300 + !
+0 lpav 301 + !
+0 ldev 301 + !
+0 lpav 302 + !
+0 ldev 302 + !
+0 lpav 303 + !
+0 ldev 303 + !
+0 lpav 304 + !
+0 ldev 304 + !
+0 lpav 305 + !
+0 ldev 305 + !
+0 lpav 306 + !
+0 ldev 306 + !
+0 lpav 307 + !
+0 ldev 307 + !
+0 lpav 308 + !
+0 ldev 308 + !
+0 lpav 309 + !
+0 ldev 309 + !
+0 lpav 310 + !
+0 ldev 310 + !
+0 lpav 311 + !
+0 ldev 311 + !
+0 lpav 312 + !
+0 ldev 312 + !
+0 lpav 313 + !
+0 ldev 313 + !
+0 lpav 314 + !
+0 ldev 314 + !
+0 lpav 315 + !
+0 ldev 315 + !
+0 lpav 316 + !
+0 ldev 316 + !
+0 lpav 317 + !
+0 ldev 317 + !
+0 lpav 318 + !
+0 ldev 318 + !
+0 lpav 319 + !
+0 ldev 319 + !
+0 lpav 320 + !
+0 ldev 320 + !
+0 lpav 321 + !
+0 ldev 321 + !
+0 lpav 322 + !
+0 ldev 322 + !
+0 lpav 323 + !
+0 ldev 323 + !
+0 lpav 324 + !
+0 ldev 324 + !
+0 lpav 325 + !
+0 ldev 325 + !
+0 lpav 326 + !
+0 ldev 326 + !
+0 lpav 327 + !
+0 ldev 327 + !
+0 lpav 328 + !
+0 ldev 328 + !
+0 lpav 329 + !
+0 ldev 329 + !
+0 lpav 330 + !
+0 ldev 330 + !
+0 lpav 331 + !
+0 ldev 331 + !
+0 lpav 332 + !
+0 ldev 332 + !
+0 lpav 333 + !
+0 ldev 333 + !
+0 lpav 334 + !
+0 ldev 334 + !
+0 lpav 335 + !
+0 ldev 335 + !
+0 lpav 336 + !
+0 ldev 336 + !
+0 lpav 337 + !
+0 ldev 337 + !
+0 lpav 338 + !
+0 ldev 338 + !
+0 lpav 339 + !
+0 ldev 339 + !
+0 lpav 340 + !
+0 ldev 340 + !
+0 lpav 341 + !
+0 ldev 341 + !
+0 lpav 342 + !
+0 ldev 342 + !
+0 lpav 343 + !
+0 ldev 343 + !
+0 lpav 344 + !
+0 ldev 344 + !
+0 lpav 345 + !
+0 ldev 345 + !
+0 lpav 346 + !
+0 ldev 346 + !
+0 lpav 347 + !
+0 ldev 347 + !
+0 lpav 348 + !
+0 ldev 348 + !
+0 lpav 349 + !
+0 ldev 349 + !
+0 lpav 350 + !
+0 ldev 350 + !
+0 lpav 351 + !
+0 ldev 351 + !
+0 lpav 352 + !
+0 ldev 352 + !
+0 lpav 353 + !
+0 ldev 353 + !
+0 lpav 354 + !
+0 ldev 354 + !
+0 lpav 355 + !
+0 ldev 355 + !
+0 lpav 356 + !
+0 ldev 356 + !
+0 lpav 357 + !
+0 ldev 357 + !
+0 lpav 358 + !
+0 ldev 358 + !
+0 lpav 359 + !
+0 ldev 359 + !
+0 lpav 360 + !
+0 ldev 360 + !
+0 lpav 361 + !
+0 ldev 361 + !
+0 lpav 362 + !
+0 ldev 362 + !
+0 lpav 363 + !
+0 ldev 363 + !
+0 lpav 364 + !
+0 ldev 364 + !
+0 lpav 365 + !
+0 ldev 365 + !
+0 lpav 366 + !
+0 ldev 366 + !
+0 lpav 367 + !
+0 ldev 367 + !
+0 lpav 368 + !
+0 ldev 368 + !
+0 lpav 369 + !
+0 ldev 369 + !
+0 lpav 370 + !
+0 ldev 370 + !
+0 lpav 371 + !
+0 ldev 371 + !
+0 lpav 372 + !
+0 ldev 372 + !
+0 lpav 373 + !
+0 ldev 373 + !
+0 lpav 374 + !
+0 ldev 374 + !
+0 lpav 375 + !
+0 ldev 375 + !
+0 lpav 376 + !
+0 ldev 376 + !
+0 lpav 377 + !
+0 ldev 377 + !
+0 lpav 378 + !
+0 ldev 378 + !
+0 lpav 379 + !
+0 ldev 379 + !
+0 lpav 380 + !
+0 ldev 380 + !
+0 lpav 381 + !
+0 ldev 381 + !
+0 lpav 382 + !
+0 ldev 382 + !
+0 lpav 383 + !
+0 ldev 383 + !
+0 lpav 384 + !
+0 ldev 384 + !
+0 lpav 385 + !
+0 ldev 385 + !
+0 lpav 386 + !
+0 ldev 386 + !
+0 lpav 387 + !
+0 ldev 387 + !
+0 lpav 388 + !
+0 ldev 388 + !
+0 lpav 389 + !
+0 ldev 389 + !
+0 lpav 390 + !
+0 ldev 390 + !
+0 lpav 391 + !
+0 ldev 391 + !
+0 lpav 392 + !
+0 ldev 392 + !
+0 lpav 393 + !
+0 ldev 393 + !
+0 lpav 394 + !
+0 ldev 394 + !
+0 lpav 395 + !
+0 ldev 395 + !
+0 lpav 396 + !
+0 ldev 396 + !
+0 lpav 397 + !
+0 ldev 397 + !
+0 lpav 398 + !
+0 ldev 398 + !
+0 lpav 399 + !
+0 ldev 399 + !
+0 lpav 400 + !
+0 ldev 400 + !
+0 lpav 401 + !
+0 ldev 401 + !
+0 lpav 402 + !
+0 ldev 402 + !
+0 lpav 403 + !
+0 ldev 403 + !
+0 lpav 404 + !
+0 ldev 404 + !
+0 lpav 405 + !
+0 ldev 405 + !
+0 lpav 406 + !
+0 ldev 406 + !
+0 lpav 407 + !
+0 ldev 407 + !
+0 lpav 408 + !
+0 ldev 408 + !
+0 lpav 409 + !
+0 ldev 409 + !
+0 lpav 410 + !
+0 ldev 410 + !
+0 lpav 411 + !
+0 ldev 411 + !
+0 lpav 412 + !
+0 ldev 412 + !
+0 lpav 413 + !
+0 ldev 413 + !
+0 lpav 414 + !
+0 ldev 414 + !
+0 lpav 415 + !
+0 ldev 415 + !
+0 lpav 416 + !
+0 ldev 416 + !
+0 lpav 417 + !
+0 ldev 417 + !
+0 lpav 418 + !
+0 ldev 418 + !
+0 lpav 419 + !
+0 ldev 419 + !
+0 lpav 420 + !
+0 ldev 420 + !
+0 lpav 421 + !
+0 ldev 421 + !
+0 lpav 422 + !
+0 ldev 422 + !
+0 lpav 423 + !
+0 ldev 423 + !
+0 lpav 424 + !
+0 ldev 424 + !
+0 lpav 425 + !
+0 ldev 425 + !
+0 lpav 426 + !
+0 ldev 426 + !
+0 lpav 427 + !
+0 ldev 427 + !
+0 lpav 428 + !
+0 ldev 428 + !
+0 lpav 429 + !
+0 ldev 429 + !
+0 lpav 430 + !
+0 ldev 430 + !
+0 lpav 431 + !
+0 ldev 431 + !
+0 lpav 432 + !
+0 ldev 432 + !
+0 lpav 433 + !
+0 ldev 433 + !
+0 lpav 434 + !
+0 ldev 434 + !
+0 lpav 435 + !
+0 ldev 435 + !
+0 lpav 436 + !
+0 ldev 436 + !
+0 lpav 437 + !
+0 ldev 437 + !
+0 lpav 438 + !
+0 ldev 438 + !
+0 lpav 439 + !
+0 ldev 439 + !
+0 lpav 440 + !
+0 ldev 440 + !
+0 lpav 441 + !
+0 ldev 441 + !
+0 lpav 442 + !
+0 ldev 442 + !
+0 lpav 443 + !
+0 ldev 443 + !
+0 lpav 444 + !
+0 ldev 444 + !
+0 lpav 445 + !
+0 ldev 445 + !
+0 lpav 446 + !
+0 ldev 446 + !
+0 lpav 447 + !
+0 ldev 447 + !
+0 lpav 448 + !
+0 ldev 448 + !
+0 lpav 449 + !
+0 ldev 449 + !
+0 lpav 450 + !
+0 ldev 450 + !
+0 lpav 451 + !
+0 ldev 451 + !
+0 lpav 452 + !
+0 ldev 452 + !
+0 lpav 453 + !
+0 ldev 453 + !
+0 lpav 454 + !
+0 ldev 454 + !
+0 lpav 455 + !
+0 ldev 455 + !
+0 lpav 456 + !
+0 ldev 456 + !
+0 lpav 457 + !
+0 ldev 457 + !
+0 lpav 458 + !
+0 ldev 458 + !
+0 lpav 459 + !
+0 ldev 459 + !
+0 lpav 460 + !
+0 ldev 460 + !
+0 lpav 461 + !
+0 ldev 461 + !
+0 lpav 462 + !
+0 ldev 462 + !
+0 lpav 463 + !
+0 ldev 463 + !
+0 lpav 464 + !
+0 ldev 464 + !
+0 lpav 465 + !
+0 ldev 465 + !
+0 lpav 466 + !
+0 ldev 466 + !
+0 lpav 467 + !
+0 ldev 467 + !
+0 lpav 468 + !
+0 ldev 468 + !
+0 lpav 469 + !
+0 ldev 469 + !
+0 lpav 470 + !
+0 ldev 470 + !
+0 lpav 471 + !
+0 ldev 471 + !
+0 lpav 472 + !
+0 ldev 472 + !
+0 lpav 473 + !
+0 ldev 473 + !
+0 lpav 474 + !
+0 ldev 474 + !
+0 lpav 475 + !
+0 ldev 475 + !
+0 lpav 476 + !
+0 ldev 476 + !
+0 lpav 477 + !
+0 ldev 477 + !
+0 lpav 478 + !
+0 ldev 478 + !
+0 lpav 479 + !
+0 ldev 479 + !
+0 lpav 480 + !
+0 ldev 480 + !
+0 lpav 481 + !
+0 ldev 481 + !
+0 lpav 482 + !
+0 ldev 482 + !
+0 lpav 483 + !
+0 ldev 483 + !
+0 lpav 484 + !
+0 ldev 484 + !
+0 lpav 485 + !
+0 ldev 485 + !
+0 lpav 486 + !
+0 ldev 486 + !
+0 lpav 487 + !
+0 ldev 487 + !
+0 lpav 488 + !
+0 ldev 488 + !
+0 lpav 489 + !
+0 ldev 489 + !
+0 lpav 490 + !
+0 ldev 490 + !
+0 lpav 491 + !
+0 ldev 491 + !
+0 lpav 492 + !
+0 ldev 492 + !
+0 lpav 493 + !
+0 ldev 493 + !
+0 lpav 494 + !
+0 ldev 494 + !
+0 lpav 495 + !
+0 ldev 495 + !
+0 lpav 496 + !
+0 ldev 496 + !
+0 lpav 497 + !
+0 ldev 497 + !
+0 lpav 498 + !
+0 ldev 498 + !
+0 lpav 499 + !
+0 ldev 499 + !
+0 lpav 500 + !
+0 ldev 500 + !
+0 lpav 501 + !
+0 ldev 501 + !
+0 lpav 502 + !
+0 ldev 502 + !
+0 lpav 503 + !
+0 ldev 503 + !
+0 lpav 504 + !
+0 ldev 504 + !
+0 lpav 505 + !
+0 ldev 505 + !
+0 lpav 506 + !
+0 ldev 506 + !
+0 lpav 507 + !
+0 ldev 507 + !
+0 lpav 508 + !
+0 ldev 508 + !
+0 lpav 509 + !
+0 ldev 509 + !
+0 lpav 510 + !
+0 ldev 510 + !
+0 lpav 511 + !
+0 ldev 511 + !
+0 lpav 512 + !
+0 ldev 512 + !
+0 lpav 513 + !
+0 ldev 513 + !
+0 lpav 514 + !
+0 ldev 514 + !
+0 lpav 515 + !
+0 ldev 515 + !
+0 lpav 516 + !
+0 ldev 516 + !
+0 lpav 517 + !
+0 ldev 517 + !
+0 lpav 518 + !
+0 ldev 518 + !
+0 lpav 519 + !
+0 ldev 519 + !
+0 lpav 520 + !
+0 ldev 520 + !
+0 lpav 521 + !
+0 ldev 521 + !
+0 lpav 522 + !
+0 ldev 522 + !
+0 lpav 523 + !
+0 ldev 523 + !
+0 lpav 524 + !
+0 ldev 524 + !
+0 lpav 525 + !
+0 ldev 525 + !
+0 lpav 526 + !
+0 ldev 526 + !
+0 lpav 527 + !
+0 ldev 527 + !
+0 lpav 528 + !
+0 ldev 528 + !
+0 lpav 529 + !
+0 ldev 529 + !
+0 lpav 530 + !
+0 ldev 530 + !
+0 lpav 531 + !
+0 ldev 531 + !
+0 lpav 532 + !
+0 ldev 532 + !
+0 lpav 533 + !
+0 ldev 533 + !
+0 lpav 534 + !
+0 ldev 534 + !
+0 lpav 535 + !
+0 ldev 535 + !
+0 lpav 536 + !
+0 ldev 536 + !
+0 lpav 537 + !
+0 ldev 537 + !
+0 lpav 538 + !
+0 ldev 538 + !
+0 lpav 539 + !
+0 ldev 539 + !
+0 lpav 540 + !
+0 ldev 540 + !
+0 lpav 541 + !
+0 ldev 541 + !
+0 lpav 542 + !
+0 ldev 542 + !
+0 lpav 543 + !
+0 ldev 543 + !
+0 lpav 544 + !
+0 ldev 544 + !
+0 lpav 545 + !
+0 ldev 545 + !
+0 lpav 546 + !
+0 ldev 546 + !
+0 lpav 547 + !
+0 ldev 547 + !
+0 lpav 548 + !
+0 ldev 548 + !
+0 lpav 549 + !
+0 ldev 549 + !
+0 lpav 550 + !
+0 ldev 550 + !
+0 lpav 551 + !
+0 ldev 551 + !
+0 lpav 552 + !
+0 ldev 552 + !
+0 lpav 553 + !
+0 ldev 553 + !
+0 lpav 554 + !
+0 ldev 554 + !
+0 lpav 555 + !
+0 ldev 555 + !
+0 lpav 556 + !
+0 ldev 556 + !
+0 lpav 557 + !
+0 ldev 557 + !
+0 lpav 558 + !
+0 ldev 558 + !
+0 lpav 559 + !
+0 ldev 559 + !
+0 lpav 560 + !
+0 ldev 560 + !
+0 lpav 561 + !
+0 ldev 561 + !
+0 lpav 562 + !
+0 ldev 562 + !
+0 lpav 563 + !
+0 ldev 563 + !
+0 lpav 564 + !
+0 ldev 564 + !
+0 lpav 565 + !
+0 ldev 565 + !
+0 lpav 566 + !
+0 ldev 566 + !
+0 lpav 567 + !
+0 ldev 567 + !
+0 lpav 568 + !
+0 ldev 568 + !
+0 lpav 569 + !
+0 ldev 569 + !
+0 lpav 570 + !
+0 ldev 570 + !
+0 lpav 571 + !
+0 ldev 571 + !
+0 lpav 572 + !
+0 ldev 572 + !
+0 lpav 573 + !
+0 ldev 573 + !
+0 lpav 574 + !
+0 ldev 574 + !
+0 lpav 575 + !
+0 ldev 575 + !
+0 lpav 576 + !
+0 ldev 576 + !
+0 lpav 577 + !
+0 ldev 577 + !
+0 lpav 578 + !
+0 ldev 578 + !
+0 lpav 579 + !
+0 ldev 579 + !
+0 lpav 580 + !
+0 ldev 580 + !
+0 lpav 581 + !
+0 ldev 581 + !
+0 lpav 582 + !
+0 ldev 582 + !
+0 lpav 583 + !
+0 ldev 583 + !
+0 lpav 584 + !
+0 ldev 584 + !
+0 lpav 585 + !
+0 ldev 585 + !
+0 lpav 586 + !
+0 ldev 586 + !
+0 lpav 587 + !
+0 ldev 587 + !
+0 lpav 588 + !
+0 ldev 588 + !
+0 lpav 589 + !
+0 ldev 589 + !
+0 lpav 590 + !
+0 ldev 590 + !
+0 lpav 591 + !
+0 ldev 591 + !
+0 lpav 592 + !
+0 ldev 592 + !
+0 lpav 593 + !
+0 ldev 593 + !
+0 lpav 594 + !
+0 ldev 594 + !
+0 lpav 595 + !
+0 ldev 595 + !
+0 lpav 596 + !
+0 ldev 596 + !
+0 lpav 597 + !
+0 ldev 597 + !
+0 lpav 598 + !
+0 ldev 598 + !
+0 lpav 599 + !
+0 ldev 599 + !
+0 lpav 600 + !
+0 ldev 600 + !
+0 lpav 601 + !
+0 ldev 601 + !
+0 lpav 602 + !
+0 ldev 602 + !
+0 lpav 603 + !
+0 ldev 603 + !
+0 lpav 604 + !
+0 ldev 604 + !
+0 lpav 605 + !
+0 ldev 605 + !
+0 lpav 606 + !
+0 ldev 606 + !
+0 lpav 607 + !
+0 ldev 607 + !
+0 lpav 608 + !
+0 ldev 608 + !
+0 lpav 609 + !
+0 ldev 609 + !
+0 lpav 610 + !
+0 ldev 610 + !
+0 lpav 611 + !
+0 ldev 611 + !
+0 lpav 612 + !
+0 ldev 612 + !
+0 lpav 613 + !
+0 ldev 613 + !
+0 lpav 614 + !
+0 ldev 614 + !
+0 lpav 615 + !
+0 ldev 615 + !
+0 lpav 616 + !
+0 ldev 616 + !
+0 lpav 617 + !
+0 ldev 617 + !
+0 lpav 618 + !
+0 ldev 618 + !
+0 lpav 619 + !
+0 ldev 619 + !
+0 lpav 620 + !
+0 ldev 620 + !
+0 lpav 621 + !
+0 ldev 621 + !
+0 lpav 622 + !
+0 ldev 622 + !
+0 lpav 623 + !
+0 ldev 623 + !
+0 lpav 624 + !
+0 ldev 624 + !
+0 lpav 625 + !
+0 ldev 625 + !
+0 lpav 626 + !
+0 ldev 626 + !
+0 lpav 627 + !
+0 ldev 627 + !
+0 lpav 628 + !
+0 ldev 628 + !
+0 lpav 629 + !
+0 ldev 629 + !
+0 lpav 630 + !
+0 ldev 630 + !
+0 lpav 631 + !
+0 ldev 631 + !
+0 lpav 632 + !
+0 ldev 632 + !
+0 lpav 633 + !
+0 ldev 633 + !
+0 lpav 634 + !
+0 ldev 634 + !
+0 lpav 635 + !
+0 ldev 635 + !
+0 lpav 636 + !
+0 ldev 636 + !
+0 lpav 637 + !
+0 ldev 637 + !
+0 lpav 638 + !
+0 ldev 638 + !
+0 lpav 639 + !
+0 ldev 639 + !
+0 lpav 640 + !
+0 ldev 640 + !
+0 lpav 641 + !
+0 ldev 641 + !
+0 lpav 642 + !
+0 ldev 642 + !
+0 lpav 643 + !
+0 ldev 643 + !
+0 lpav 644 + !
+0 ldev 644 + !
+0 lpav 645 + !
+0 ldev 645 + !
+0 lpav 646 + !
+0 ldev 646 + !
+0 lpav 647 + !
+0 ldev 647 + !
+0 lpav 648 + !
+0 ldev 648 + !
+0 lpav 649 + !
+0 ldev 649 + !
+0 lpav 650 + !
+0 ldev 650 + !
+0 lpav 651 + !
+0 ldev 651 + !
+0 lpav 652 + !
+0 ldev 652 + !
+0 lpav 653 + !
+0 ldev 653 + !
+0 lpav 654 + !
+0 ldev 654 + !
+0 lpav 655 + !
+0 ldev 655 + !
+0 lpav 656 + !
+0 ldev 656 + !
+0 lpav 657 + !
+0 ldev 657 + !
+0 lpav 658 + !
+0 ldev 658 + !
+0 lpav 659 + !
+0 ldev 659 + !
+0 lpav 660 + !
+0 ldev 660 + !
+0 lpav 661 + !
+0 ldev 661 + !
+0 lpav 662 + !
+0 ldev 662 + !
+0 lpav 663 + !
+0 ldev 663 + !
+0 lpav 664 + !
+0 ldev 664 + !
+0 lpav 665 + !
+0 ldev 665 + !
+0 lpav 666 + !
+0 ldev 666 + !
+0 lpav 667 + !
+0 ldev 667 + !
+0 lpav 668 + !
+0 ldev 668 + !
+0 lpav 669 + !
+0 ldev 669 + !
+0 lpav 670 + !
+0 ldev 670 + !
+0 lpav 671 + !
+0 ldev 671 + !
+0 lpav 672 + !
+0 ldev 672 + !
+0 lpav 673 + !
+0 ldev 673 + !
+0 lpav 674 + !
+0 ldev 674 + !
+0 lpav 675 + !
+0 ldev 675 + !
+0 lpav 676 + !
+0 ldev 676 + !
+0 lpav 677 + !
+0 ldev 677 + !
+0 lpav 678 + !
+0 ldev 678 + !
+0 lpav 679 + !
+0 ldev 679 + !
+0 lpav 680 + !
+0 ldev 680 + !
+0 lpav 681 + !
+0 ldev 681 + !
+0 lpav 682 + !
+0 ldev 682 + !
+0 lpav 683 + !
+0 ldev 683 + !
+0 lpav 684 + !
+0 ldev 684 + !
+0 lpav 685 + !
+0 ldev 685 + !
+0 lpav 686 + !
+0 ldev 686 + !
+0 lpav 687 + !
+0 ldev 687 + !
+0 lpav 688 + !
+0 ldev 688 + !
+0 lpav 689 + !
+0 ldev 689 + !
+0 lpav 690 + !
+0 ldev 690 + !
+0 lpav 691 + !
+0 ldev 691 + !
+0 lpav 692 + !
+0 ldev 692 + !
+0 lpav 693 + !
+0 ldev 693 + !
+0 lpav 694 + !
+0 ldev 694 + !
+0 lpav 695 + !
+0 ldev 695 + !
+0 lpav 696 + !
+0 ldev 696 + !
+0 lpav 697 + !
+0 ldev 697 + !
+0 lpav 698 + !
+0 ldev 698 + !
+0 lpav 699 + !
+0 ldev 699 + !
+0 lpav 700 + !
+0 ldev 700 + !
+0 lpav 701 + !
+0 ldev 701 + !
+0 lpav 702 + !
+0 ldev 702 + !
+0 lpav 703 + !
+0 ldev 703 + !
+0 lpav 704 + !
+0 ldev 704 + !
+0 lpav 705 + !
+0 ldev 705 + !
+0 lpav 706 + !
+0 ldev 706 + !
+0 lpav 707 + !
+0 ldev 707 + !
+0 lpav 708 + !
+0 ldev 708 + !
+0 lpav 709 + !
+0 ldev 709 + !
+0 lpav 710 + !
+0 ldev 710 + !
+0 lpav 711 + !
+0 ldev 711 + !
+0 lpav 712 + !
+0 ldev 712 + !
+0 lpav 713 + !
+0 ldev 713 + !
+0 lpav 714 + !
+0 ldev 714 + !
+0 lpav 715 + !
+0 ldev 715 + !
+0 lpav 716 + !
+0 ldev 716 + !
+0 lpav 717 + !
+0 ldev 717 + !
+0 lpav 718 + !
+0 ldev 718 + !
+0 lpav 719 + !
+0 ldev 719 + !
+0 lpav 720 + !
+0 ldev 720 + !
+0 lpav 721 + !
+0 ldev 721 + !
+0 lpav 722 + !
+0 ldev 722 + !
+0 lpav 723 + !
+0 ldev 723 + !
+0 lpav 724 + !
+0 ldev 724 + !
+0 lpav 725 + !
+0 ldev 725 + !
+0 lpav 726 + !
+0 ldev 726 + !
+0 lpav 727 + !
+0 ldev 727 + !
+0 lpav 728 + !
+0 ldev 728 + !
+0 lpav 729 + !
+0 ldev 729 + !
+0 lpav 730 + !
+0 ldev 730 + !
+0 lpav 731 + !
+0 ldev 731 + !
+0 lpav 732 + !
+0 ldev 732 + !
+0 lpav 733 + !
+0 ldev 733 + !
+0 lpav 734 + !
+0 ldev 734 + !
+0 lpav 735 + !
+0 ldev 735 + !
+0 lpav 736 + !
+0 ldev 736 + !
+0 lpav 737 + !
+0 ldev 737 + !
+0 lpav 738 + !
+0 ldev 738 + !
+0 lpav 739 + !
+0 ldev 739 + !
+0 lpav 740 + !
+0 ldev 740 + !
+0 lpav 741 + !
+0 ldev 741 + !
+0 lpav 742 + !
+0 ldev 742 + !
+0 lpav 743 + !
+0 ldev 743 + !
+0 lpav 744 + !
+0 ldev 744 + !
+0 lpav 745 + !
+0 ldev 745 + !
+0 lpav 746 + !
+0 ldev 746 + !
+0 lpav 747 + !
+0 ldev 747 + !
+0 lpav 748 + !
+0 ldev 748 + !
+0 lpav 749 + !
+0 ldev 749 + !
+0 lpav 750 + !
+0 ldev 750 + !
+0 lpav 751 + !
+0 ldev 751 + !
+0 lpav 752 + !
+0 ldev 752 + !
+0 lpav 753 + !
+0 ldev 753 + !
+0 lpav 754 + !
+0 ldev 754 + !
+0 lpav 755 + !
+0 ldev 755 + !
+0 lpav 756 + !
+0 ldev 756 + !
+0 lpav 757 + !
+0 ldev 757 + !
+0 lpav 758 + !
+0 ldev 758 + !
+0 lpav 759 + !
+0 ldev 759 + !
+0 lpav 760 + !
+0 ldev 760 + !
+0 lpav 761 + !
+0 ldev 761 + !
+0 lpav 762 + !
+0 ldev 762 + !
+0 lpav 763 + !
+0 ldev 763 + !
+0 lpav 764 + !
+0 ldev 764 + !
+0 lpav 765 + !
+0 ldev 765 + !
+0 lpav 766 + !
+0 ldev 766 + !
+0 lpav 767 + !
+0 ldev 767 + !
+0 lpav 768 + !
+0 ldev 768 + !
+0 lpav 769 + !
+0 ldev 769 + !
+0 lpav 770 + !
+0 ldev 770 + !
+0 lpav 771 + !
+0 ldev 771 + !
+0 lpav 772 + !
+0 ldev 772 + !
+0 lpav 773 + !
+0 ldev 773 + !
+0 lpav 774 + !
+0 ldev 774 + !
+0 lpav 775 + !
+0 ldev 775 + !
+0 lpav 776 + !
+0 ldev 776 + !
+0 lpav 777 + !
+0 ldev 777 + !
+0 lpav 778 + !
+0 ldev 778 + !
+0 lpav 779 + !
+0 ldev 779 + !
+0 lpav 780 + !
+0 ldev 780 + !
+0 lpav 781 + !
+0 ldev 781 + !
+0 lpav 782 + !
+0 ldev 782 + !
+0 lpav 783 + !
+0 ldev 783 + !
+0 lpav 784 + !
+0 ldev 784 + !
+0 lpav 785 + !
+0 ldev 785 + !
+0 lpav 786 + !
+0 ldev 786 + !
+0 lpav 787 + !
+0 ldev 787 + !
+0 lpav 788 + !
+0 ldev 788 + !
+0 lpav 789 + !
+0 ldev 789 + !
+0 lpav 790 + !
+0 ldev 790 + !
+0 lpav 791 + !
+0 ldev 791 + !
+0 lpav 792 + !
+0 ldev 792 + !
+0 lpav 793 + !
+0 ldev 793 + !
+0 lpav 794 + !
+0 ldev 794 + !
+0 lpav 795 + !
+0 ldev 795 + !
+0 lpav 796 + !
+0 ldev 796 + !
+0 lpav 797 + !
+0 ldev 797 + !
+0 lpav 798 + !
+0 ldev 798 + !
+0 lpav 799 + !
+0 ldev 799 + !
+0 lpav 800 + !
+0 ldev 800 + !
+0 lpav 801 + !
+0 ldev 801 + !
+0 lpav 802 + !
+0 ldev 802 + !
+0 lpav 803 + !
+0 ldev 803 + !
+0 lpav 804 + !
+0 ldev 804 + !
+0 lpav 805 + !
+0 ldev 805 + !
+0 lpav 806 + !
+0 ldev 806 + !
+0 lpav 807 + !
+0 ldev 807 + !
+0 lpav 808 + !
+0 ldev 808 + !
+0 lpav 809 + !
+0 ldev 809 + !
+0 lpav 810 + !
+0 ldev 810 + !
+0 lpav 811 + !
+0 ldev 811 + !
+0 lpav 812 + !
+0 ldev 812 + !
+0 lpav 813 + !
+0 ldev 813 + !
+0 lpav 814 + !
+0 ldev 814 + !
+0 lpav 815 + !
+0 ldev 815 + !
+0 lpav 816 + !
+0 ldev 816 + !
+0 lpav 817 + !
+0 ldev 817 + !
+0 lpav 818 + !
+0 ldev 818 + !
+0 lpav 819 + !
+0 ldev 819 + !
+0 lpav 820 + !
+0 ldev 820 + !
+0 lpav 821 + !
+0 ldev 821 + !
+0 lpav 822 + !
+0 ldev 822 + !
+0 lpav 823 + !
+0 ldev 823 + !
+0 lpav 824 + !
+0 ldev 824 + !
+0 lpav 825 + !
+0 ldev 825 + !
+0 lpav 826 + !
+0 ldev 826 + !
+0 lpav 827 + !
+0 ldev 827 + !
+0 lpav 828 + !
+0 ldev 828 + !
+0 lpav 829 + !
+0 ldev 829 + !
+0 lpav 830 + !
+0 ldev 830 + !
+0 lpav 831 + !
+0 ldev 831 + !
+0 lpav 832 + !
+0 ldev 832 + !
+0 lpav 833 + !
+0 ldev 833 + !
+0 lpav 834 + !
+0 ldev 834 + !
+0 lpav 835 + !
+0 ldev 835 + !
+0 lpav 836 + !
+0 ldev 836 + !
+0 lpav 837 + !
+0 ldev 837 + !
+0 lpav 838 + !
+0 ldev 838 + !
+0 lpav 839 + !
+0 ldev 839 + !
+0 lpav 840 + !
+0 ldev 840 + !
+0 lpav 841 + !
+0 ldev 841 + !
+0 lpav 842 + !
+0 ldev 842 + !
+0 lpav 843 + !
+0 ldev 843 + !
+0 lpav 844 + !
+0 ldev 844 + !
+0 lpav 845 + !
+0 ldev 845 + !
+0 lpav 846 + !
+0 ldev 846 + !
+0 lpav 847 + !
+0 ldev 847 + !
+0 lpav 848 + !
+0 ldev 848 + !
+0 lpav 849 + !
+0 ldev 849 + !
+0 lpav 850 + !
+0 ldev 850 + !
+0 lpav 851 + !
+0 ldev 851 + !
+0 lpav 852 + !
+0 ldev 852 + !
+0 lpav 853 + !
+0 ldev 853 + !
+0 lpav 854 + !
+0 ldev 854 + !
+0 lpav 855 + !
+0 ldev 855 + !
+0 lpav 856 + !
+0 ldev 856 + !
+0 lpav 857 + !
+0 ldev 857 + !
+0 lpav 858 + !
+0 ldev 858 + !
+0 lpav 859 + !
+0 ldev 859 + !
+0 lpav 860 + !
+0 ldev 860 + !
+0 lpav 861 + !
+0 ldev 861 + !
+0 lpav 862 + !
+0 ldev 862 + !
+0 lpav 863 + !
+0 ldev 863 + !
+0 lpav 864 + !
+0 ldev 864 + !
+0 lpav 865 + !
+0 ldev 865 + !
+0 lpav 866 + !
+0 ldev 866 + !
+0 lpav 867 + !
+0 ldev 867 + !
+0 lpav 868 + !
+0 ldev 868 + !
+0 lpav 869 + !
+0 ldev 869 + !
+0 lpav 870 + !
+0 ldev 870 + !
+0 lpav 871 + !
+0 ldev 871 + !
+0 lpav 872 + !
+0 ldev 872 + !
+0 lpav 873 + !
+0 ldev 873 + !
+0 lpav 874 + !
+0 ldev 874 + !
+0 lpav 875 + !
+0 ldev 875 + !
+0 lpav 876 + !
+0 ldev 876 + !
+0 lpav 877 + !
+0 ldev 877 + !
+0 lpav 878 + !
+0 ldev 878 + !
+0 lpav 879 + !
+0 ldev 879 + !
+0 lpav 880 + !
+0 ldev 880 + !
+0 lpav 881 + !
+0 ldev 881 + !
+0 lpav 882 + !
+0 ldev 882 + !
+0 lpav 883 + !
+0 ldev 883 + !
+0 lpav 884 + !
+0 ldev 884 + !
+0 lpav 885 + !
+0 ldev 885 + !
+0 lpav 886 + !
+0 ldev 886 + !
+0 lpav 887 + !
+0 ldev 887 + !
+0 lpav 888 + !
+0 ldev 888 + !
+0 lpav 889 + !
+0 ldev 889 + !
+0 lpav 890 + !
+0 ldev 890 + !
+0 lpav 891 + !
+0 ldev 891 + !
+0 lpav 892 + !
+0 ldev 892 + !
+0 lpav 893 + !
+0 ldev 893 + !
+0 lpav 894 + !
+0 ldev 894 + !
+0 lpav 895 + !
+0 ldev 895 + !
+0 lpav 896 + !
+0 ldev 896 + !
+0 lpav 897 + !
+0 ldev 897 + !
+0 lpav 898 + !
+0 ldev 898 + !
+0 lpav 899 + !
+0 ldev 899 + !
+0 lpav 900 + !
+0 ldev 900 + !
+0 lpav 901 + !
+0 ldev 901 + !
+0 lpav 902 + !
+0 ldev 902 + !
+0 lpav 903 + !
+0 ldev 903 + !
+0 lpav 904 + !
+0 ldev 904 + !
+0 lpav 905 + !
+0 ldev 905 + !
+0 lpav 906 + !
+0 ldev 906 + !
+0 lpav 907 + !
+0 ldev 907 + !
+0 lpav 908 + !
+0 ldev 908 + !
+0 lpav 909 + !
+0 ldev 909 + !
+0 lpav 910 + !
+0 ldev 910 + !
+0 lpav 911 + !
+0 ldev 911 + !
+0 lpav 912 + !
+0 ldev 912 + !
+0 lpav 913 + !
+0 ldev 913 + !
+0 lpav 914 + !
+0 ldev 914 + !
+0 lpav 915 + !
+0 ldev 915 + !
+0 lpav 916 + !
+0 ldev 916 + !
+0 lpav 917 + !
+0 ldev 917 + !
+0 lpav 918 + !
+0 ldev 918 + !
+0 lpav 919 + !
+0 ldev 919 + !
+0 lpav 920 + !
+0 ldev 920 + !
+0 lpav 921 + !
+0 ldev 921 + !
+0 lpav 922 + !
+0 ldev 922 + !
+0 lpav 923 + !
+0 ldev 923 + !
+0 lpav 924 + !
+0 ldev 924 + !
+0 lpav 925 + !
+0 ldev 925 + !
+0 lpav 926 + !
+0 ldev 926 + !
+0 lpav 927 + !
+0 ldev 927 + !
+0 lpav 928 + !
+0 ldev 928 + !
+0 lpav 929 + !
+0 ldev 929 + !
+0 lpav 930 + !
+0 ldev 930 + !
+0 lpav 931 + !
+0 ldev 931 + !
+0 lpav 932 + !
+0 ldev 932 + !
+0 lpav 933 + !
+0 ldev 933 + !
+0 lpav 934 + !
+0 ldev 934 + !
+0 lpav 935 + !
+0 ldev 935 + !
+0 lpav 936 + !
+0 ldev 936 + !
+0 lpav 937 + !
+0 ldev 937 + !
+0 lpav 938 + !
+0 ldev 938 + !
+0 lpav 939 + !
+0 ldev 939 + !
+0 lpav 940 + !
+0 ldev 940 + !
+0 lpav 941 + !
+0 ldev 941 + !
+0 lpav 942 + !
+0 ldev 942 + !
+0 lpav 943 + !
+0 ldev 943 + !
+0 lpav 944 + !
+0 ldev 944 + !
+0 lpav 945 + !
+0 ldev 945 + !
+0 lpav 946 + !
+0 ldev 946 + !
+0 lpav 947 + !
+0 ldev 947 + !
+0 lpav 948 + !
+0 ldev 948 + !
+0 lpav 949 + !
+0 ldev 949 + !
+0 lpav 950 + !
+0 ldev 950 + !
+0 lpav 951 + !
+0 ldev 951 + !
+0 lpav 952 + !
+0 ldev 952 + !
+0 lpav 953 + !
+0 ldev 953 + !
+0 lpav 954 + !
+0 ldev 954 + !
+0 lpav 955 + !
+0 ldev 955 + !
+0 lpav 956 + !
+0 ldev 956 + !
+0 lpav 957 + !
+0 ldev 957 + !
+0 lpav 958 + !
+0 ldev 958 + !
+0 lpav 959 + !
+0 ldev 959 + !
+0 lpav 960 + !
+0 ldev 960 + !
+0 lpav 961 + !
+0 ldev 961 + !
+0 lpav 962 + !
+0 ldev 962 + !
+0 lpav 963 + !
+0 ldev 963 + !
+0 lpav 964 + !
+0 ldev 964 + !
+0 lpav 965 + !
+0 ldev 965 + !
+0 lpav 966 + !
+0 ldev 966 + !
+0 lpav 967 + !
+0 ldev 967 + !
+0 lpav 968 + !
+0 ldev 968 + !
+0 lpav 969 + !
+0 ldev 969 + !
+0 lpav 970 + !
+0 ldev 970 + !
+0 lpav 971 + !
+0 ldev 971 + !
+0 lpav 972 + !
+0 ldev 972 + !
+0 lpav 973 + !
+0 ldev 973 + !
+0 lpav 974 + !
+0 ldev 974 + !
+0 lpav 975 + !
+0 ldev 975 + !
+0 lpav 976 + !
+0 ldev 976 + !
+0 lpav 977 + !
+0 ldev 977 + !
+0 lpav 978 + !
+0 ldev 978 + !
+0 lpav 979 + !
+0 ldev 979 + !
+0 lpav 980 + !
+0 ldev 980 + !
+0 lpav 981 + !
+0 ldev 981 + !
+0 lpav 982 + !
+0 ldev 982 + !
+0 lpav 983 + !
+0 ldev 983 + !
+0 lpav 984 + !
+0 ldev 984 + !
+0 lpav 985 + !
+0 ldev 985 + !
+0 lpav 986 + !
+0 ldev 986 + !
+0 lpav 987 + !
+0 ldev 987 + !
+0 lpav 988 + !
+0 ldev 988 + !
+0 lpav 989 + !
+0 ldev 989 + !
+0 lpav 990 + !
+0 ldev 990 + !
+0 lpav 991 + !
+0 ldev 991 + !
+0 lpav 992 + !
+0 ldev 992 + !
+0 lpav 993 + !
+0 ldev 993 + !
+0 lpav 994 + !
+0 ldev 994 + !
+0 lpav 995 + !
+0 ldev 995 + !
+0 lpav 996 + !
+0 ldev 996 + !
+0 lpav 997 + !
+0 ldev 997 + !
+0 lpav 998 + !
+0 ldev 998 + !
+0 lpav 999 + !
+0 ldev 999 + !
+0 lpav 1000 + !
+0 ldev 1000 + !
+0 lpav 1001 + !
+0 ldev 1001 + !
+0 lpav 1002 + !
+0 ldev 1002 + !
+0 lpav 1003 + !
+0 ldev 1003 + !
+0 lpav 1004 + !
+0 ldev 1004 + !
+0 lpav 1005 + !
+0 ldev 1005 + !
+0 lpav 1006 + !
+0 ldev 1006 + !
+0 lpav 1007 + !
+0 ldev 1007 + !
+0 lpav 1008 + !
+0 ldev 1008 + !
+0 lpav 1009 + !
+0 ldev 1009 + !
+0 lpav 1010 + !
+0 ldev 1010 + !
+0 lpav 1011 + !
+0 ldev 1011 + !
+0 lpav 1012 + !
+0 ldev 1012 + !
+0 lpav 1013 + !
+0 ldev 1013 + !
+0 lpav 1014 + !
+0 ldev 1014 + !
+0 lpav 1015 + !
+0 ldev 1015 + !
+0 lpav 1016 + !
+0 ldev 1016 + !
+0 lpav 1017 + !
+0 ldev 1017 + !
+0 lpav 1018 + !
+0 ldev 1018 + !
+0 lpav 1019 + !
+0 ldev 1019 + !
+0 lpav 1020 + !
+0 ldev 1020 + !
+0 lpav 1021 + !
+0 ldev 1021 + !
+0 lpav 1022 + !
+0 ldev 1022 + !
+0 lpav 1023 + !
+0 ldev 1023 + !
+0 lpav 1024 + !
+0 ldev 1024 + !
+0 lpav 1025 + !
+0 ldev 1025 + !
+0 lpav 1026 + !
+0 ldev 1026 + !
+0 lpav 1027 + !
+0 ldev 1027 + !
+0 lpav 1028 + !
+0 ldev 1028 + !
+0 lpav 1029 + !
+0 ldev 1029 + !
+0 lpav 1030 + !
+0 ldev 1030 + !
+0 lpav 1031 + !
+0 ldev 1031 + !
+0 lpav 1032 + !
+0 ldev 1032 + !
+0 lpav 1033 + !
+0 ldev 1033 + !
+0 lpav 1034 + !
+0 ldev 1034 + !
+0 lpav 1035 + !
+0 ldev 1035 + !
+0 lpav 1036 + !
+0 ldev 1036 + !
+0 lpav 1037 + !
+0 ldev 1037 + !
+0 lpav 1038 + !
+0 ldev 1038 + !
+0 lpav 1039 + !
+0 ldev 1039 + !
+0 lpav 1040 + !
+0 ldev 1040 + !
+0 lpav 1041 + !
+0 ldev 1041 + !
+0 lpav 1042 + !
+0 ldev 1042 + !
+0 lpav 1043 + !
+0 ldev 1043 + !
+0 lpav 1044 + !
+0 ldev 1044 + !
+0 lpav 1045 + !
+0 ldev 1045 + !
+0 lpav 1046 + !
+0 ldev 1046 + !
+0 lpav 1047 + !
+0 ldev 1047 + !
+0 lpav 1048 + !
+0 ldev 1048 + !
+0 lpav 1049 + !
+0 ldev 1049 + !
+0 lpav 1050 + !
+0 ldev 1050 + !
+0 lpav 1051 + !
+0 ldev 1051 + !
+0 lpav 1052 + !
+0 ldev 1052 + !
+0 lpav 1053 + !
+0 ldev 1053 + !
+0 lpav 1054 + !
+0 ldev 1054 + !
+0 lpav 1055 + !
+0 ldev 1055 + !
+0 lpav 1056 + !
+0 ldev 1056 + !
+0 lpav 1057 + !
+0 ldev 1057 + !
+0 lpav 1058 + !
+0 ldev 1058 + !
+0 lpav 1059 + !
+0 ldev 1059 + !
+0 lpav 1060 + !
+0 ldev 1060 + !
+0 lpav 1061 + !
+0 ldev 1061 + !
+0 lpav 1062 + !
+0 ldev 1062 + !
+0 lpav 1063 + !
+0 ldev 1063 + !
+0 lpav 1064 + !
+0 ldev 1064 + !
+0 lpav 1065 + !
+0 ldev 1065 + !
+0 lpav 1066 + !
+0 ldev 1066 + !
+0 lpav 1067 + !
+0 ldev 1067 + !
+0 lpav 1068 + !
+0 ldev 1068 + !
+0 lpav 1069 + !
+0 ldev 1069 + !
+0 lpav 1070 + !
+0 ldev 1070 + !
+0 lpav 1071 + !
+0 ldev 1071 + !
+0 lpav 1072 + !
+0 ldev 1072 + !
+0 lpav 1073 + !
+0 ldev 1073 + !
+0 lpav 1074 + !
+0 ldev 1074 + !
+0 lpav 1075 + !
+0 ldev 1075 + !
+0 lpav 1076 + !
+0 ldev 1076 + !
+0 lpav 1077 + !
+0 ldev 1077 + !
+0 lpav 1078 + !
+0 ldev 1078 + !
+0 lpav 1079 + !
+0 ldev 1079 + !
+0 lpav 1080 + !
+0 ldev 1080 + !
+0 lpav 1081 + !
+0 ldev 1081 + !
+0 lpav 1082 + !
+0 ldev 1082 + !
+0 lpav 1083 + !
+0 ldev 1083 + !
+0 lpav 1084 + !
+0 ldev 1084 + !
+0 lpav 1085 + !
+0 ldev 1085 + !
+0 lpav 1086 + !
+0 ldev 1086 + !
+0 lpav 1087 + !
+0 ldev 1087 + !
+0 lpav 1088 + !
+0 ldev 1088 + !
+0 lpav 1089 + !
+0 ldev 1089 + !
+0 lpav 1090 + !
+0 ldev 1090 + !
+0 lpav 1091 + !
+0 ldev 1091 + !
+0 lpav 1092 + !
+0 ldev 1092 + !
+0 lpav 1093 + !
+0 ldev 1093 + !
+0 lpav 1094 + !
+0 ldev 1094 + !
+0 lpav 1095 + !
+0 ldev 1095 + !
+0 lpav 1096 + !
+0 ldev 1096 + !
+0 lpav 1097 + !
+0 ldev 1097 + !
+0 lpav 1098 + !
+0 ldev 1098 + !
+0 lpav 1099 + !
+0 ldev 1099 + !
+0 lpav 1100 + !
+0 ldev 1100 + !
+0 lpav 1101 + !
+0 ldev 1101 + !
+0 lpav 1102 + !
+0 ldev 1102 + !
+0 lpav 1103 + !
+0 ldev 1103 + !
+0 lpav 1104 + !
+0 ldev 1104 + !
+0 lpav 1105 + !
+0 ldev 1105 + !
+0 lpav 1106 + !
+0 ldev 1106 + !
+0 lpav 1107 + !
+0 ldev 1107 + !
+0 lpav 1108 + !
+0 ldev 1108 + !
+0 lpav 1109 + !
+0 ldev 1109 + !
+0 lpav 1110 + !
+0 ldev 1110 + !
+0 i !
+i @ 
+jobs @ 
+ < 
+while
+lpav
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxpa
+i @ 
++ @ 
+aux !
+lypa
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+then
+bestpair @ 
+current_pa !
+1 have_job !
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+0 aux !
+0 idist !
+idist @ 
+input_rows @ 
+ < 
+while
+0 jdist !
+jdist @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+100000 dist
+aux @ 
++ !
+aux @ 
+1 + aux !
+jdist @ 
+1 + jdist !
+jdist @ 
+input_cols @ 
+ < 
+repeat
+idist @ 
+1 + idist !
+idist @ 
+input_rows @ 
+ < 
+repeat
+0 idist !
+idist @ 
+jobs @ 
+ < 
+while
+lxpa
+idist @ 
++ @ 
+aux !
+lypa
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+lxde
+idist @ 
++ @ 
+aux !
+lyde
+idist @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+0 aux_room
+aux @ 
++ !
+idist @ 
+1 + idist !
+idist @ 
+jobs @ 
+ < 
+repeat
+0 l !
+0 r !
+xpa @ 
+qx 0 + !
+ypa @ 
+qy 0 + !
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+xdist !
+qy
+l @ 
++ @ 
+ydist !
+l @ 
+1 + l !
+xdist @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ydist @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+newdist !
+newdist @ 
+1 + newdist !
+xdist @ 
+xx !
+xx @ 
+-1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+1 + xx !
+ydist @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+xdist @ 
+xx !
+xx @ 
+0 + xx !
+ydist @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+newdist @ 
+dist
+aux @ 
++ !
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+0 i !
+i @ 
+bestpair !
+100000 bestdist !
+i @ 
+jobs @ 
+ < 
+while
+ldev
+i @ 
++ @ 
+temp !
+temp @ 
+0 = 
+if
+lxde
+i @ 
++ @ 
+aux !
+lyde
+i @ 
++ @ 
+aux2 !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+aux2 @ 
+ + aux !
+dist
+aux @ 
++ @ 
+actdist !
+actdist @ 
+bestdist @ 
+ < 
+if
+actdist @ 
+bestdist !
+i @ 
+bestpair !
+then
+then
+i @ 
+1 + i !
+i @ 
+jobs @ 
+ < 
+repeat
+bestpair @ 
+current_de !
+then
+lxpa
+current_pa @ 
++ @ 
+xpa !
+lypa
+current_pa @ 
++ @ 
+ypa !
+lxde
+current_de @ 
++ @ 
+xde !
+lyde
+current_de @ 
++ @ 
+yde !
+xpa @ 
+xde @ 
+=
+if
+ypa @ 
+yde @ 
+=
+if
+99 lpav
+current_pa @ 
++ !
+99 ldev
+current_de @ 
++ !
+0 have_job !
+0 quit
+then
+then
+xpa @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+ypa @ 
+ + aux2 !
+0 room
+aux2 @ 
++ !
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 l !
+0 r !
+xde @ 
+qx 0 + !
+yde @ 
+qy 0 + !
+xde @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yde @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+-1 + smxx !
+yy @ 
+smyy !
+smyy @ 
+0 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+1 + smxx !
+yy @ 
+smyy !
+smyy @ 
+0 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+0 + smxx !
+yy @ 
+smyy !
+smyy @ 
+-1 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+xx @ 
+smxx !
+smxx @ 
+0 + smxx !
+yy @ 
+smyy !
+smyy @ 
+1 + smyy !
+smxx @ 
+smaux !
+smaux @ 
+input_cols @ 
+ * smaux !
+smaux @ 
+smyy @ 
+ + smaux !
+aux_room 
+smaux @ 
+ + @ -1 =
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+then
+l @ 
+r @ 
+<= 
+repeat
+xpa @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+ypa @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir !
+-1 ddx 1 + !
+1 ddx 2 + !
+0 ddx 3 + !
+0 ddx 4 + !
+0 ddy 1 + !
+0 ddy 2 + !
+-1 ddy 3 + !
+1 ddy 4 + !
+xpa @ 
+xne !
+ypa @ 
+yne !
+xne @ 
+ddx
+dir @ 
+ + @ 
+-
+xne!
+yne @ 
+ddy
+dir @ 
+ + @ 
+-
+yne!
+xpa @ 
+aux2 !
+aux2 @ 
+input_cols @ 
+ * aux2 !
+aux2 @ 
+ypa @ 
+ + aux2 !
+-1 room
+aux2 @ 
++ !
+0 aux !
+0 i !
+i @ 
+input_rows @ 
+ < 
+while
+0 j !
+j @ 
+input_cols @ 
+ < 
+while
+room
+aux @ 
++ @ 
+aux_room
+aux @ 
++ !
+aux @ 
+1 + aux !
+j @ 
+1 + j !
+j @ 
+input_cols @ 
+ < 
+repeat
+i @ 
+1 + i !
+i @ 
+input_rows @ 
+ < 
+repeat
+0 l !
+0 r !
+xne @ 
+qx 0 + !
+yne @ 
+qy 0 + !
+xne @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yne @ 
+ + aux !
+aux_room 
+aux @ 
+ + @ -1 =
+if
+l @ 
+1 + l !
+then
+1 aux_room
+aux @ 
++ !
+l @ 
+r @ 
+<= 
+while
+qx
+l @ 
++ @ 
+x !
+qy
+l @ 
++ @ 
+y !
+l @ 
+1 + l !
+x @ 
+xx !
+xx @ 
+-1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+2 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+1 + xx !
+y @ 
+yy !
+yy @ 
+0 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+1 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+-1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+4 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+x @ 
+xx !
+xx @ 
+0 + xx !
+y @ 
+yy !
+yy @ 
+1 + yy !
+xx @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yy @ 
+ + aux !
+aux_room
+aux @ 
+ + @ 
+if
+else
+3 aux_room
+aux @ 
++ !
+r @ 
+1 + r !
+xx @ 
+qx
+r @ 
++ !
+yy @ 
+qy
+r @ 
++ !
+then
+l @ 
+r @ 
+<= 
+repeat
+xme @ 
+aux !
+aux @ 
+input_cols @ 
+ * aux !
+aux @ 
+yme @ 
+ + aux !
+aux_room
+aux @ 
++ @ 
+dir2 !
+dir2 @ 
+xne @ 
+xme @ 
+=
+if
+yne @ 
+yme @ 
+=
+if
+dir @ 
+then
+then
+dup 0 =
+if
+lpav
+current_pa @ 
++ @ 
+temp !
+temp @ 
+1 + temp !
+temp @ 
+lpav
+current_pa @ 
++ !
+0 have_job !
+then

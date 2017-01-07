@@ -1,0 +1,41 @@
+variable step
+
+
+step @
+1 +
+step !
+step @
+
+dup 1 =
+if 
+   2
+   quit
+then
+
+dup 2 =
+if 
+   4
+   quit
+then
+
+dup 3 =
+if 
+   1
+   quit
+then
+
+dup 4 =
+if 
+   4
+   quit
+then
+
+dup 5 =
+if 
+   2
+   quit
+then
+
+quit
+
+

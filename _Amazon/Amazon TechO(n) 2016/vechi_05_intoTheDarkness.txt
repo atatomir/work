@@ -1,0 +1,37 @@
+variable i
+variable cnt
+
+i @
+input_objects_count @
+<
+
+while 
+  i @
+  3 *
+  input_objects + @
+  2 = 
+  if
+    cnt @
+    1 +
+    cnt !
+  then
+
+  i @
+  1 +
+  i !  
+
+  i @
+  input_objects_count @
+  <
+repeat
+
+0
+
+cnt @
+5 =
+if
+  -1
+then
+
+
+
