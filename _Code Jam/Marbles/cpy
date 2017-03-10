@@ -1,0 +1,213 @@
+
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <map>
+
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ll long long
+
+#define maxN 1024
+
+struct intr {
+    int l, r;
+
+    bool operator<(const intr& who)const {
+        return l < who.l;
+    }
+
+    bool intersect(const intr& who) {
+        intr aux1 = *this;
+        intr aux2 = who;
+
+        if (aux2 < aux1) swap(aux1, aux2);
+        return aux1.r > aux2.l && aux1.r < aux2.r;
+    }
+};
+
+int t, ti;
+int n, i, cnt;
+string ord[maxN * 2];
+map<string, int> M;
+intr I[maxN];
+
+vector<int> list[maxN];
+int col[maxN];
+bool all_ok = true;
+vector<int> comp[maxN];
+vector<int> aux;
+int l[maxN], r[maxN];
+
+int dad[maxN];
+vector<int> tree[maxN];
+
+int sumi[maxN][2][maxN];
+int dp[maxN][maxN], valid[maxN];
+int loc[maxN];
+
+
+void dfs(int node) {
+    aux.pb(node);
+    l[cnt] = min(l[cnt], I[node].l);
+    r[cnt] = max(r[cnt], I[node].r);
+
+    for (auto to : list[node]) {
+        if (!col[to]) {
+            col[to] = 3 ^ col[node];
+            dfs(to);
+            continue;
+        }
+
+        if (col[node] == col[to])
+            all_ok = false;
+    }
+}
+
+void compute_loc(int node) {
+    int i;
+    int daddy = dad[node];
+    int up = sumi[daddy][0][ l[node] ];
+    int down = sumi[daddy][1][ l[node] ];
+    int d1, d2;
+
+    for (i = 0; i <= n; i++) loc[i] = n + 11;
+
+    for (i = valid[node]; i <= n; i++) {
+        d1 = i + up;
+        d2 = dp[node][i] + down;
+        loc[d1] = min(loc[d1], d2);
+
+        d1 = dp[node][i] + up;
+        d2 = i + down;
+        loc[d1] = min(loc[d1], d2);
+    }
+
+    for (i = 1; i <= n; i++) loc[i] = min(loc[i], loc[i - 1]);
+    for (i = valid[node]; loc[i] > n; i++);
+    valid[daddy] = max(valid[daddy], i);
+}
+
+void solve_tree(int node) {
+    int i, vaux;;
+
+    for (auto to : tree[node])
+        solve_tree(to);
+
+    for (auto e : comp[node]) {
+        sumi[node][ col[e] - 1 ][ I[e].l ]++;
+        sumi[node][ col[e] - 1 ][ I[e].r + 1 ]--;
+    }
+
+    valid[node] = sumi[node][0][0]; vaux = sumi[node][1][0];
+    for (i = 1; i <= 2 * n; i++) {
+        sumi[node][0][i] += sumi[node][0][i - 1];
+        sumi[node][1][i] += sumi[node][1][i - 1];
+        valid[node] = max(valid[node], sumi[node][0][i]);
+        vaux = max(vaux, sumi[node][1][i]);
+    }
+
+    for (i = valid[node]; i <= n; i++)
+        dp[node][i] = vaux;
+
+    for (auto to : tree[node]) {
+        compute_loc(to);
+        for (i = valid[node]; i <= n; i++) dp[node][i] = max(dp[node][i], loc[i]);
+    }
+
+}
+
+int solve() {
+    int i, j;
+
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            if (i == j) continue;
+            if (I[i].intersect(I[j]))
+                list[i].pb(j);
+        }
+    }
+
+    cnt = 0;
+    for (i = 1; i <= n; i++) {
+        if (col[i] == 0) {
+            aux.clear();
+            cnt++;
+            l[cnt] = 1000000;
+            r[cnt] = 0;
+
+            col[i] = 1, dfs(i);
+
+            comp[cnt] = aux;
+        }
+    }
+
+    if (!all_ok) return -1;
+
+    for (i = 1; i <= cnt; i++) {
+        int dd = 0;
+
+        for (j = 1; j <= cnt; j++) {
+            if (i == j) continue;
+            if (l[j] < l[i] && r[i] < r[j]) {
+                if (dd == 0 || l[dd] < l[j])
+                    dd = j;
+            }
+        }
+
+        if (!dd) dd = cnt + 1;
+        tree[dd].pb(i), dad[i] = dd;
+    }
+
+    solve_tree(cnt + 1);
+
+    int ans = n + 11;
+    for (i = valid[cnt + 1]; i <= n; i++)
+        ans = min(ans, i + dp[cnt + 1][i]);
+
+    return ans;
+}
+
+int main()
+{
+    freopen("test.in","r",stdin);
+    freopen("test.out", "w", stdout);
+
+    cin >> t;
+    for (ti = 1; ti <= t; ti++) {
+        cin >> n;
+
+        cnt = 0;
+        M.clear();
+        for (i = 0; i <= 2 * n; i++) list[i].clear(), tree[i].clear(), comp[i].clear();
+        memset(col, 0, sizeof(col));
+        all_ok = true;
+        memset(sumi, 0, sizeof(sumi));
+        memset(dp, 0, sizeof(dp));
+        memset(valid, 0, sizeof(valid));
+
+
+
+        for (i = 1; i <= 2 * n; i++) {
+            cin >> ord[i];
+            if (M[ord[i]] == 0) {
+                M[ord[i]] = ++cnt;
+                I[cnt].l = i;
+            } else {
+                I[M[ord[i]]].r = i;
+            }
+        }
+
+        printf("Case #%d: %d\n", ti, solve());
+    }
+
+
+
+
+    return 0;
+}
