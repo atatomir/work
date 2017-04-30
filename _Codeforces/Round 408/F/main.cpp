@@ -191,8 +191,6 @@ void build_solution() {
     }
 
     //! set useful positions
-    sort(useful.begin(), useful.end());
-    reverse(useful.begin(), useful.end());
     for (auto e : useful) {
         int vv = get_best(e.first);
         cute |= vv;
