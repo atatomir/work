@@ -1,6 +1,0 @@
-brute - O(2 ^ n), 0 points
-DP 0 - O(n * val_max), 0 points
-FFT - O(val_max * log (val_max)), full score
-DP 100 - O(val_max * log(val_max)), full score
-
-
