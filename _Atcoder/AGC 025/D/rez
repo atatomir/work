@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ll long long
+
+const int maxN = 611;
+
+ll n, d1, d2, i, j, need;
+vector< pair<ll, ll> > comb;
+bool us[maxN][maxN];
+
+
+void run(int val) {
+    int x, y;
+
+    y = 0;
+    for (x = 0; x * x <= val; x++) {
+        while (x * x + (y + 1) * (y + 1) <= val) y++;
+        while (x * x + y * y > val) y--;
+
+        if (x * x + y * y == val) comb.pb(mp(x, y));
+    }
+}
+
+void rm_around(ll x, ll y) {
+    vector<ll> vx, vy;
+    us[x][y] = true;
+
+    for (auto act : comb) {
+        vx = {act.first, -act.first};
+        vy = {act.second, -act.second};
+        for (auto dx : vx)
+            for (auto dy : vy)
+                if (0 <= x + dx && x + dx < 2 * n)
+                    if (0 <= y + dy && y + dy < 2 * n)
+                        us[x + dx][y + dy] = true;
+    }
+}
+
+void solve() {
+    need = n * n;
+    for (i = 0; i < 2 * n; i++) {
+        for (j = 0; j < 2 * n; j++) {
+            if (us[i][j]) continue;
+            printf("%lld %lld\n", i, j);
+            if (--need == 0) exit(0);
+            rm_around(i, j);
+        }
+    }
+}
+
+int main()
+{
+    //freopen("test.in","r",stdin);
+
+    scanf("%lld%lld%lld", &n, &d1, &d2);
+    run(d1);
+    run(d2);
+
+    solve();
+    return 13;
+}
