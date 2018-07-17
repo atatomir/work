@@ -12,3 +12,4 @@ obj
 *.cbTemp
 *.save-failed
 *.o
+*/exec
