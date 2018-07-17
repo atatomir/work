@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ll long long
+
+const ll base = 100000;
+const ll dig = 5;
+
+struct bigint {
+    vector<ll> data;
+
+    void init(ll nr) {
+        data = {nr};
+    }
+
+    void read() {
+        static string s;
+        static ll i, j, aux;
+
+        cin >> s;
+        reverse(s.begin(), s.end());
+        while (s.size() % dig != 0) s.pb('0');
+
+        data.clear();
+        for (i = 0; i < s.size(); i += dig) {
+            aux = 0;
+            for (j = dig - 1; j >= 0; j--)
+                aux = (aux * 10) + (s[i + j] - '0');
+            data.pb(aux);
+        }
+    }
+
+    bigint operator*(const bigint &who) {
+        static ll i, j;
+        bigint ans;
+        ans.data = vector<ll>(0, data.size() + who.data.size());
+    }
+};
+
+void brute() {
+    vector<int> data;
+    int i;
+
+    data = {0, 1, 2, 3};
+    for (i = 4; i <= 50; i++) {
+        data.pb(max(data[i - 2] * 2, data[i - 3] * 3));
+        cerr << i << ' ' << data[i] << ' ';
+        if (data[i] == 3 * data[i - 3]) cerr << "P3";
+        cerr << '\n';
+    }
+
+}
+
+int main()
+{
+    freopen("test.in","r",stdin);
+
+    //brute();
+
+
+
+    return 0;
+}
