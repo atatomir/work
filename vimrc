@@ -1,11 +1,11 @@
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-set textwidth=80 
-set nu
+set tabstop=4 "dimensiune tab
+set shiftwidth=4 "dimesiune autoindent
+set autoindent 
+set nu "show number line
 syntax on
+set splitright
+set splitbelow
 
 inoremap {  {}<Left>
 inoremap (  ()<Left>
@@ -16,7 +16,8 @@ inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]
 
 map m Ypi    
 
-map <F9>    :w<Enter>:!g++ -std=c++11 -o exec main.cpp<Enter>
-map <F10>   :!./exec<Enter>
-map <F8>    :!vim test.in<Enter>
-map <F7>    :!vim test.out<Enter>
+map <F9>    :w<Enter>:!g++ -std=c++11 -O2 -o exec %<Enter>
+map <F10>   :!time ./exec<Enter>
+map <F8>    :split test.in<Enter>
+map <F7>    :split test.out<Enter>
+map <F6>    :!cat % \| pbcopy \| echo "File copied to clipboard"<Enter>
